@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сборная по географии</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tw-config">
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        paper: 'rgb(var(--paper) / <alpha-value>)', surface: 'rgb(var(--surface) / <alpha-value>)', field: 'rgb(var(--field) / <alpha-value>)',
+        ink: 'rgb(var(--ink) / <alpha-value>)', slate: 'rgb(var(--slate) / <alpha-value>)', line: 'rgb(var(--line) / <alpha-value>)',
+        sea: 'rgb(var(--sea) / <alpha-value>)', 'on-sea': 'rgb(var(--on-sea) / <alpha-value>)', 'sea-deep': 'rgb(var(--sea-deep) / <alpha-value>)',
+        'on-deep': 'rgb(var(--on-deep) / <alpha-value>)', moss: 'rgb(var(--moss) / <alpha-value>)', ochre: 'rgb(var(--ochre) / <alpha-value>)',
+        'ochre-ink': 'rgb(var(--ochre-ink) / <alpha-value>)', danger: 'rgb(var(--danger) / <alpha-value>)'
+      },
+      fontFamily: {
+        display: ['Unbounded', 'system-ui', 'sans-serif'],
+        body: ['"Golos Text"', 'system-ui', '-apple-system', '"Segoe UI"', 'Roboto', 'sans-serif']
+      }
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+<style id="app-css">
+:root {
+  --paper: 238 241 236; --surface: 248 250 247; --field: 255 255 255;
+  --ink: 26 43 50; --slate: 86 102 108; --line: 203 211 204;
+  --sea: 31 86 115; --on-sea: 255 255 255; --sea-deep: 20 61 82; --on-deep: 238 241 236;
+  --moss: 79 122 74; --ochre: 217 169 58; --ochre-ink: 138 100 20; --danger: 169 58 50;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: 15 25 30; --surface: 22 35 41; --field: 28 43 50;
+    --ink: 225 232 228; --slate: 150 166 170; --line: 48 64 70;
+    --sea: 120 180 206; --on-sea: 10 28 38; --sea-deep: 11 32 42; --on-deep: 232 238 234;
+    --moss: 132 180 124; --ochre: 222 178 76; --ochre-ink: 232 196 110; --danger: 232 116 104;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: 15 25 30; --surface: 22 35 41; --field: 28 43 50;
+  --ink: 225 232 228; --slate: 150 166 170; --line: 48 64 70;
+  --sea: 120 180 206; --on-sea: 10 28 38; --sea-deep: 11 32 42; --on-deep: 232 238 234;
+  --moss: 132 180 124; --ochre: 222 178 76; --ochre-ink: 232 196 110; --danger: 232 116 104;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: rgb(var(--paper)); color: rgb(var(--ink)); font-family: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: Unbounded, system-ui, sans-serif; font-weight: 500; margin: 0; }
+:focus-visible { outline: 2px solid rgb(var(--ochre)); outline-offset: 2px; }
+.contours { fill: none; stroke: currentColor; stroke-width: 1.4; }
+.app-header { top: env(safe-area-inset-top, 0px); }
+.tabbar { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.sidebar { padding-top: env(safe-area-inset-top, 0px); }
+.page-title { font-size: 1.5rem; line-height: 1.2; }
+@media (min-width: 1024px) { .page-title { font-size: 2rem; } }
+.page-lead { margin-top: .5rem; max-width: 65ch; color: rgb(var(--slate)); }
+.panel { border-radius: .5rem; border: 1px solid rgb(var(--line)); background: rgb(var(--surface)); padding: 1rem; }
+@media (min-width: 640px) { .panel { padding: 1.25rem; } }
+.panel-title { font-family: Unbounded, system-ui, sans-serif; font-weight: 500; font-size: 15px; }
+.label { display: block; margin-bottom: .375rem; font-size: .875rem; font-weight: 500; }
+.input { display: block; width: 100%; border-radius: .375rem; border: 1px solid rgb(var(--line)); background: rgb(var(--field)); padding: .625rem .75rem; font: inherit; font-size: 15px; color: rgb(var(--ink)); }
+.input::placeholder { color: rgb(var(--slate) / .7); }
+.input:focus { outline: none; border-color: rgb(var(--sea)); box-shadow: 0 0 0 3px rgb(var(--sea) / .22); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; white-space: nowrap; border-radius: 9999px; border: 1px solid transparent; padding: .5rem 1rem; font: inherit; font-size: .875rem; font-weight: 600; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s, opacity .15s; background: transparent; color: inherit; text-decoration: none; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-sm { padding: .375rem .75rem; }
+.btn-primary { background: rgb(var(--sea)); color: rgb(var(--on-sea)); }
+.btn-primary:hover { opacity: .9; }
+.btn-secondary { border-color: rgb(var(--line)); background: rgb(var(--field)); color: rgb(var(--ink)); }
+.btn-secondary:hover { border-color: rgb(var(--sea)); color: rgb(var(--sea)); }
+.btn-ghost { color: rgb(var(--slate)); }
+.btn-ghost:hover { background: rgb(var(--line) / .45); color: rgb(var(--ink)); }
+.btn-danger { color: rgb(var(--danger)); }
+.btn-danger:hover { background: rgb(var(--danger) / .1); }
+.chip { display: inline-flex; flex-shrink: 0; align-items: center; gap: .375rem; border-radius: 9999px; border: 1px solid rgb(var(--line)); background: rgb(var(--field)); padding: .375rem .75rem; font: inherit; font-size: .875rem; color: rgb(var(--ink)); cursor: pointer; }
+.chip:hover { border-color: rgb(var(--sea)); }
+.chip[aria-pressed="true"] { border-color: rgb(var(--sea)); background: rgb(var(--sea)); color: rgb(var(--on-sea)); }
+.badge { display: inline-flex; align-items: center; gap: .25rem; white-space: nowrap; border-radius: 9999px; padding: .125rem .625rem; font-size: .75rem; font-weight: 500; }
+.b-moss { background: rgb(var(--moss) / .15); color: rgb(var(--moss)); }
+.b-sea { background: rgb(var(--sea) / .1); color: rgb(var(--sea)); }
+.b-ochre { background: rgb(var(--ochre) / .2); color: rgb(var(--ochre-ink)); }
+.b-muted { background: rgb(var(--line) / .6); color: rgb(var(--slate)); }
+.b-danger { background: rgb(var(--danger) / .12); color: rgb(var(--danger)); }
+.link-btn { border: 0; background: none; padding: 0; font: inherit; color: rgb(var(--sea)); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.seg { display: inline-flex; border-radius: 9999px; border: 1px solid rgb(var(--line)); background: rgb(var(--field)); padding: 2px; }
+.seg-btn { border: 0; border-radius: 9999px; background: transparent; padding: .375rem .75rem; font: inherit; font-size: .875rem; font-weight: 500; color: rgb(var(--slate)); cursor: pointer; }
+.seg-btn:hover { color: rgb(var(--ink)); }
+.seg-btn[aria-pressed="true"], .seg-btn:has(input:checked) { background: rgb(var(--sea)); color: rgb(var(--on-sea)); }
+.nav-link { display: flex; align-items: center; gap: .75rem; border-radius: .375rem; border-left: 3px solid transparent; padding: .625rem .75rem; font-size: 15px; color: rgb(var(--on-deep) / .75); text-decoration: none; }
+.nav-link:hover { background: rgb(255 255 255 / .1); color: rgb(var(--on-deep)); }
+.nav-link[aria-current="page"] { border-color: rgb(var(--ochre)); background: rgb(255 255 255 / .1); color: rgb(var(--on-deep)); }
+.tab-link { display: flex; flex: 1; flex-direction: column; align-items: center; gap: .25rem; border: 0; background: transparent; padding: .625rem .25rem .5rem; font: inherit; font-size: 11px; font-weight: 500; color: rgb(var(--slate)); text-decoration: none; cursor: pointer; }
+.tab-link[aria-current="page"] { color: rgb(var(--sea)); }
+.row-btn { display: flex; width: 100%; align-items: center; gap: 1rem; border: 0; background: transparent; padding: .875rem 1rem; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+.row-btn:hover, .row-btn:focus-visible { background: rgb(var(--paper) / .7); }
+.tnum { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<div id="app"><p style="padding:2rem;font-family:sans-serif;color:#56666C">Загрузка…</p></div>
+<script type="application/json" id="seed-data">{"state": null, "files": {}, "firebaseConfig": {"apiKey": "AIzaSyCPXt9QKbMSGsdE_LuJ8Q5hBu0kMNWKlgo", "authDomain": "geo-app-33020.firebaseapp.com", "projectId": "geo-app-33020", "storageBucket": "geo-app-33020.firebasestorage.app", "messagingSenderId": "1035406769124", "appId": "1:1035406769124:web:c2b17887877cc632d125f1"}}</script>
+<script id="app-script">
+(function () {
+  'use strict';
+
+  /* =================================================================
+     Константы и справочники
+     ================================================================= */
+  var LS_KEY = 'geo-olymp:data:v2';
+  var UI_KEY = 'geo-olymp:ui:v2';
+  var FB_KEY = 'geo-olymp:firebase';
+  var FB_OFF_KEY = 'geo-olymp:firebase-off';
+  var MAX_FILE = 25 * 1024 * 1024;
+  var EXPORT_CAP = 20 * 1024 * 1024;
+  var FB_VERSION = '10.12.2';
+  var CONTOURS = '<path d="M650 250C650 254 649 260 647 263C645 267 641 270 637 273C634 276 631 278 627 280C624 282 620 284 616 284C612 285 608 284 604 283C600 283 596 283 592 281C588 280 583 278 580 275C577 272 576 267 575 263C574 259 576 254 577 250C577 246 577 242 578 238C579 234 579 229 581 226C584 222 588 220 591 217C595 215 599 214 604 214C608 213 612 213 616 214C620 215 624 218 627 220C630 223 632 227 634 230C637 233 640 235 643 238C645 241 649 246 650 250Z"/><path d="M696 250C697 259 691 270 686 278C681 286 673 292 667 298C661 304 655 310 647 314C640 318 631 320 623 321C614 323 606 321 598 321C589 320 579 322 570 319C562 316 551 311 546 304C541 296 541 284 540 275C540 266 542 258 542 250C542 242 539 233 540 224C541 216 543 205 548 198C553 191 562 185 570 181C578 177 587 173 596 172C605 171 615 171 623 174C632 177 638 185 644 190C651 196 654 202 660 208C667 213 676 217 682 224C688 231 695 241 696 250Z"/><path d="M741 250C740 264 729 278 721 290C714 303 706 313 696 323C687 332 678 343 667 349C656 355 642 356 629 358C616 360 604 361 590 361C577 362 559 365 547 360C534 355 521 342 515 330C509 318 513 299 512 286C511 272 510 263 508 250C506 237 498 223 499 210C500 196 506 180 514 169C522 158 536 150 548 143C561 137 575 129 589 128C602 127 618 130 630 136C642 142 650 156 660 164C669 172 677 178 688 185C699 192 717 197 726 208C735 219 742 236 741 250Z"/><path d="M780 250C777 269 762 286 753 302C744 318 737 334 726 348C715 361 702 375 687 383C672 391 653 392 636 396C618 401 601 408 582 409C563 410 537 413 521 403C506 394 494 370 489 352C483 334 491 312 488 295C485 278 476 267 471 250C466 233 455 212 456 194C458 176 469 156 481 141C492 126 509 114 526 104C543 95 562 84 581 83C599 83 620 93 636 102C652 111 660 130 674 139C688 148 704 149 720 158C737 166 763 175 773 191C783 206 784 231 780 250Z"/><path d="M813 250C807 273 792 293 783 313C774 333 769 356 756 373C743 390 724 404 705 415C686 426 665 430 643 438C621 446 597 463 572 464C548 466 514 462 497 445C480 429 475 392 469 368C464 344 471 323 464 303C457 283 437 271 429 250C421 229 410 201 414 179C417 156 434 134 449 115C463 95 481 76 502 63C523 51 550 39 573 41C596 42 621 63 641 75C660 86 671 103 690 111C710 119 738 114 760 124C781 135 811 153 820 174C828 195 819 227 813 250Z"/><path d="M838 250C830 278 822 300 813 324C804 348 799 376 784 396C769 416 744 429 722 444C700 460 679 474 652 487C625 501 590 528 561 527C532 525 494 506 477 481C459 457 462 408 455 380C448 352 447 335 435 314C422 292 392 275 382 250C372 225 369 191 374 164C380 137 400 112 417 88C434 64 453 35 478 21C503 7 539 -0 567 5C595 10 621 40 645 51C669 62 685 68 712 73C739 79 782 71 807 85C832 99 856 131 861 159C866 186 846 222 838 250Z"/><path d="M201 660C200 664 199 667 197 670C196 673 195 676 193 679C191 682 188 684 185 686C182 687 178 688 175 689C172 690 168 691 165 691C161 691 156 690 154 688C151 686 149 682 148 679C146 676 146 672 145 669C144 666 142 663 142 660C141 657 140 653 141 649C141 646 144 643 146 640C148 637 151 634 154 633C157 631 161 629 165 629C168 629 172 630 175 632C178 633 180 635 183 637C186 638 190 639 193 641C195 643 199 646 200 649C202 652 202 656 201 660Z"/><path d="M239 660C238 668 235 675 232 683C230 690 227 698 223 704C218 710 211 715 204 719C197 723 190 726 182 729C174 732 165 737 157 736C148 736 138 732 132 726C126 720 124 709 121 701C117 694 116 688 113 681C110 674 104 668 102 660C100 652 99 643 101 635C103 627 109 620 114 613C119 606 125 599 132 595C140 591 149 588 157 588C165 588 174 594 181 597C188 600 194 603 202 605C209 608 219 608 226 613C232 618 239 626 242 634C244 642 241 652 239 660Z"/><path d="M274 660C272 673 271 684 267 695C263 707 259 719 251 728C244 738 233 744 223 751C213 759 202 768 190 773C178 779 161 788 148 786C135 784 120 772 112 761C103 751 102 733 97 722C91 710 86 703 80 693C74 683 63 672 60 660C57 648 59 633 63 621C67 609 74 597 82 586C90 575 99 563 110 557C122 551 138 549 151 551C163 552 175 561 187 564C199 567 209 567 222 570C235 573 253 574 263 582C273 590 279 607 281 620C283 633 277 647 274 660Z"/><path d="M307 660C305 677 306 693 301 708C296 723 288 738 278 750C268 763 255 772 242 784C229 797 216 815 199 824C182 832 157 840 139 835C122 830 105 807 94 791C83 775 82 755 73 741C64 727 51 720 41 707C32 693 20 677 17 660C14 643 21 624 26 608C31 591 39 573 49 559C60 544 74 527 90 521C105 514 128 518 145 519C162 521 176 529 193 531C210 532 229 524 247 527C265 530 290 536 302 549C313 563 315 588 316 607C317 625 310 643 307 660Z"/><path d="M341 660C339 681 341 701 334 720C328 738 314 754 302 771C290 787 278 803 263 821C247 839 230 869 209 879C187 888 153 890 131 879C110 868 95 834 81 815C67 795 61 779 47 763C33 748 9 740 -3 723C-15 706 -25 681 -26 660C-27 639 -18 616 -11 594C-4 573 2 548 16 531C30 513 51 496 72 490C93 484 119 494 141 494C162 495 177 495 200 492C222 489 253 472 276 477C299 481 328 498 340 517C352 537 348 572 348 595C348 619 344 639 341 660Z"/>';
+  var HEAD_EXTRA = [
+    '<link rel="preconnect" href="https://fonts.googleapis.com">',
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+    '<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">'
+  ];
+  var SCRIPTS = {
+    tailwind: 'https://cdn.tailwindcss.com',
+    chart: 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js',
+    lucide: 'https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js'
+  };
+
+  var SECTIONS = [
+    'Геология',
+    'Геоморфология',
+    'Метеорология',
+    'Гидрология және мұхиттану (океанография)',
+    'Биогеография және топырақтану',
+    'Климатология және экология',
+    'Халық географиясы, денсаулық географиясы, туризм, рекреация және спорт географиясы',
+    'Саяси және мәдени география',
+    'Экономикалық география (ауыл шаруашылығы, өнеркәсіп, қызмет көрсету)',
+    'Энергетика, табиғи ресурстар және көлік',
+    'Жер пайдалану географиясы, қалалар географиясы және урбанистика',
+    'Картамен жұмыс істеу және географиялық есептерді шешу'
+  ];
+  var MATH_SKILLS = ['Пропорции', 'Значимые цифры', 'Квадратные уравнения', 'Теорема Пифагора', 'Планиметрия', 'Тригонометрия', 'Графики', 'Логика'];
+  var BOOKS = [
+    ['Earth Science', 'Edward J. Tarbuck', 'S01'],
+    ['Human Geography', 'James M. Rubenstein', 'S07'],
+    ['The Cultural Landscape', 'James M. Rubenstein', 'S08'],
+    ['IB Geography', 'Garrett Nagle', null],
+    ['Understanding Earth', 'John Grotzinger', 'S01'],
+    ['Oceanography', 'Alan P. Trujillo', 'S04'],
+    ['Meteorology Today', 'C. Donald Ahrens', 'S03'],
+    ['Geography: An Integrated Approach', 'David Waugh', null],
+    ['Essentials of Geology', 'Frederick K. Lutgens', 'S01'],
+    ['Cambridge Geography', 'Paul Guinness', null],
+    ['AQA Geography', 'Malcolm Skinner', null]
+  ];
+
+  var CATEGORIES = {
+    textbook: { label: 'Учебник', icon: 'library' },
+    math: { label: 'Математика', icon: 'sigma' },
+    lecture: { label: 'Конспект или лекция', icon: 'book-open' },
+    presentation: { label: 'Презентация', icon: 'presentation' },
+    exam: { label: 'Варианты заданий', icon: 'clipboard-list' },
+    video: { label: 'Видео', icon: 'video' },
+    link: { label: 'Ссылка', icon: 'link' },
+    other: { label: 'Другое', icon: 'file-text' }
+  };
+  var STATUSES = { none: 'Не начато', in_progress: 'В процессе', learned: 'Изучено', review: 'Повторить' };
+  var STATUS_ORDER = ['none', 'in_progress', 'learned', 'review'];
+  var STATUS_BADGE = { none: 'b-muted', in_progress: 'b-sea', learned: 'b-moss', review: 'b-ochre' };
+  var LEVELS = { mock: 'Пробная', school: 'Школьный этап', city: 'Городской этап', region: 'Областной этап', republic: 'Республиканский этап', international: 'Международная' };
+  var DL_TYPES = {
+    olympiad: { label: 'Олимпиада', badge: 'b-sea', dot: 'bg-sea' },
+    exam: { label: 'Экзамен', badge: 'b-ochre', dot: 'bg-ochre' },
+    task: { label: 'Задание', badge: 'b-moss', dot: 'bg-moss' },
+    important: { label: 'Важно', badge: 'b-danger', dot: 'bg-danger' }
+  };
+  var ROUTES = {
+    analytics: { title: 'Мой прогресс', titleCaptain: 'Журнал команды', short: 'Прогресс', icon: 'bar-chart-3' },
+    syllabus: { title: 'Силлабус', icon: 'map' },
+    library: { title: 'Библиотека', icon: 'library' },
+    news: { title: 'Новости и дедлайны', short: 'Новости', icon: 'megaphone' },
+    qa: { title: 'Вопросы и ответы', short: 'Форум', icon: 'message-circle' },
+    attendance: { title: 'Посещаемость', icon: 'clipboard-check', captain: true },
+    team: { title: 'Команда', icon: 'users', captain: true },
+    settings: { title: 'Настройки и экспорт', short: 'Настройки', icon: 'settings', captain: true }
+  };
+
+  var FIRESTORE_RULES = [
+    "rules_version = '2';",
+    'service cloud.firestore {',
+    '  match /databases/{database}/documents {',
+    '    function signedIn() { return request.auth != null; }',
+    '    function isCaptain() {',
+    '      return signedIn()',
+    '        && exists(/databases/$(database)/documents/users/$(request.auth.uid))',
+    "        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'captain';",
+    '    }',
+    '    match /users/{uid} {',
+    '      allow read: if signedIn();',
+    "      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.role == 'student';",
+    '      allow update: if isCaptain() || (signedIn() && request.auth.uid == uid && request.resource.data.role == resource.data.role);',
+    '      allow delete: if isCaptain();',
+    '    }',
+    '    match /config/{id}    { allow read: if signedIn(); allow write: if isCaptain(); }',
+    '    match /topics/{id}    { allow read: if signedIn(); allow write: if isCaptain(); }',
+    '    match /news/{id}      { allow read: if signedIn(); allow write: if isCaptain(); }',
+    '    match /deadlines/{id} { allow read: if signedIn(); allow write: if isCaptain(); }',
+    '    match /exams/{id}     { allow read: if signedIn(); allow write: if isCaptain(); }',
+    '    match /sessions/{id}  { allow read: if signedIn(); allow write: if isCaptain(); }',
+    '    match /materials/{id} {',
+    '      allow read: if signedIn();',
+    '      allow create: if signedIn() && request.resource.data.by == request.auth.uid;',
+    '      allow update, delete: if isCaptain() || (signedIn() && resource.data.by == request.auth.uid);',
+    '    }',
+    '    match /questions/{id} {',
+    '      allow read: if signedIn();',
+    '      allow create: if signedIn() && request.resource.data.authorId == request.auth.uid;',
+    '      allow update, delete: if isCaptain() || (signedIn() && resource.data.authorId == request.auth.uid);',
+    '    }',
+    '    match /answers/{id} {',
+    '      allow read: if signedIn();',
+    '      allow create: if signedIn() && request.resource.data.authorId == request.auth.uid;',
+    '      allow update, delete: if isCaptain() || (signedIn() && resource.data.authorId == request.auth.uid);',
+    '    }',
+    '    match /scores/{id} {',
+    '      allow read: if isCaptain() || (signedIn() && resource.data.uid == request.auth.uid);',
+    '      allow write: if isCaptain();',
+    '    }',
+    '    match /attendance/{id} {',
+    '      allow read: if isCaptain() || (signedIn() && resource.data.uid == request.auth.uid);',
+    '      allow write: if isCaptain();',
+    '    }',
+    '    match /progress/{uid} {',
+    '      allow read: if isCaptain() || (signedIn() && request.auth.uid == uid);',
+    '      allow write: if signedIn() && request.auth.uid == uid;',
+    '    }',
+    '  }',
+    '}'
+  ].join('\n');
+
+  /* =================================================================
+     Утилиты
+     ================================================================= */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function ic(name, cls) { return '<i data-lucide="' + name + '" class="' + (cls || 'h-4 w-4') + ' shrink-0" aria-hidden="true"></i>'; }
+  function uid(p) { return p + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function todayISO() { return iso(new Date()); }
+  function toDate(s) { var p = String(s).slice(0, 10).split('-').map(Number); return new Date(p[0], p[1] - 1, p[2]); }
+  function fmtDate(s, withYear) {
+    if (!s) return '';
+    var d = toDate(s), o = { day: 'numeric', month: 'long' };
+    if (withYear || d.getFullYear() !== new Date().getFullYear()) o.year = 'numeric';
+    return d.toLocaleDateString('ru-RU', o);
+  }
+  function fmtShort(s) { var d = toDate(s); return pad(d.getDate()) + '.' + pad(d.getMonth() + 1) + '.' + String(d.getFullYear()).slice(2); }
+  function daysUntil(s) { var t = new Date(); t.setHours(0, 0, 0, 0); return Math.round((toDate(s) - t) / 86400000); }
+  function byDate(a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; }
+  function plural(n, one, few, many) {
+    n = Math.abs(n);
+    var m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return one;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+    return many;
+  }
+  function r1(x) { return x == null || isNaN(x) ? null : Math.round(x * 10) / 10; }
+  function num(x) { return x == null ? '—' : String(r1(Number(x))).replace('.', ','); }
+  function fmtPct(x) { return x == null ? '—' : num(x) + '%'; }
+  function fmtDelta(d) { if (d == null) return '—'; var v = r1(d); return (v > 0 ? '+' : v < 0 ? '−' : '') + num(Math.abs(v)) + ' п.п.'; }
+  function fmtSize(b) { if (!b) return ''; return b >= 1048576 ? num(b / 1048576) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB'; }
+  function mean(a) { a = a.filter(function (x) { return x != null && !isNaN(x); }); return a.length ? a.reduce(function (x, y) { return x + y; }, 0) / a.length : null; }
+  function norm(s) { return String(s || '').toLowerCase().replace(/ё/g, 'е').trim(); }
+  function initials(n) { return String(n || '?').split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join(''); }
+  function val(f, n) { var el = f.elements.namedItem(n); return el ? String(el.value).trim() : ''; }
+  function isHttpUrl(s) { try { var u = new URL(s); return u.protocol === 'http:' || u.protocol === 'https:'; } catch (e) { return false; } }
+  function pctOf(score, max) { return Math.round(score / max * 1000) / 10; }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function linkService(url) {
+    try {
+      var h = new URL(url).hostname;
+      if (/(^|\.)drive\.google\.com$|(^|\.)docs\.google\.com$/.test(h)) return 'Google Диск';
+      if (/(^|\.)t\.me$|(^|\.)telegram\.(me|org)$/.test(h)) return 'Telegram';
+      if (/(^|\.)disk\.yandex\.|(^|\.)yadi\.sk$/.test(h)) return 'Яндекс Диск';
+      if (/(^|\.)youtube\.com$|(^|\.)youtu\.be$/.test(h)) return 'YouTube';
+      return h.replace(/^www\./, '');
+    } catch (e) { return 'Ссылка'; }
+  }
+  function countdownText(date, title) {
+    var d = daysUntil(date);
+    if (d < 0) return 'Прошло ' + Math.abs(d) + ' ' + plural(d, 'день', 'дня', 'дней') + ' назад';
+    if (d === 0) return title ? '«' + title + '» сегодня' : 'Сегодня';
+    if (d === 1) return title ? '«' + title + '» завтра' : 'Завтра';
+    return (title ? 'До «' + title + '» осталось ' : 'Осталось ') + d + ' ' + plural(d, 'день', 'дня', 'дней');
+  }
+
+  /* =================================================================
+     Режим работы: Firebase или локальный
+     ================================================================= */
+  var SEED = null;
+  try { SEED = JSON.parse(document.getElementById('seed-data').textContent); } catch (e) { SEED = null; }
+  var inClaude = !!(window.claude && typeof window.claude.use === 'function');
+
+  function readFbConfig() {
+    try { if (localStorage.getItem(FB_OFF_KEY) === '1') return null; } catch (e) {}
+    try { var c = JSON.parse(localStorage.getItem(FB_KEY) || 'null'); if (c && c.apiKey && c.projectId) return c; } catch (e) {}
+    if (SEED && SEED.firebaseConfig && SEED.firebaseConfig.apiKey) return SEED.firebaseConfig;
+    return null;
+  }
+  var fbConfig = readFbConfig();
+  var backend = fbConfig && !inClaude ? 'firebase' : 'local';
+  var fb = { app: null, auth: null, db: null, user: null, profile: null, users: [] };
+
+  /* =================================================================
+     Данные
+     ================================================================= */
+  function defaultTopics() {
+    var list = SECTIONS.map(function (t, i) { return { id: 'S' + pad(i + 1), parentId: null, title: t, kind: 'official', order: i + 1 }; });
+    list.push({ id: 'MATH', parentId: null, title: 'Математические навыки', kind: 'math', order: 13 });
+    MATH_SKILLS.forEach(function (t, i) { list.push({ id: 'MATH-' + (i + 1), parentId: 'MATH', title: t, kind: 'math', order: i + 1 }); });
+    return list;
+  }
+  function defaultBooks(by) {
+    return BOOKS.map(function (b, i) {
+      return { id: 'book-' + (i + 1), topicId: b[2], title: b[0], author: b[1], category: 'textbook', url: null, fileId: null, fileName: null, fileSize: null, fileType: null,
+        tags: ['учебник', 'силлабус'], description: 'Рекомендованный учебник из программы олимпиады.', by: by || 'captain', createdAt: todayISO(), ts: i };
+    });
+  }
+  function emptyState() {
+    return {
+      v: 2, exportedAt: null, baseExport: null,
+      settings: { teamName: 'Сборная по географии', captainName: 'Капитан', pinHash: null },
+      students: [], topics: defaultTopics(), materials: defaultBooks('captain'),
+      sessions: [], att: {}, exams: [], scores: {}, progress: {},
+      questions: [], answers: [], news: [], deadlines: []
+    };
+  }
+  function loadLocal() {
+    var local = null;
+    try { local = JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) { local = null; }
+    if (SEED && SEED.state && (!local || local.baseExport !== SEED.state.exportedAt)) { var s = clone(SEED.state); s.baseExport = s.exportedAt; return s; }
+    if (local && local.v === 2) return local;
+    try { var old = JSON.parse(localStorage.getItem('geo-olymp:data:v1') || 'null'); if (old && old.v === 1) return migrateV1(old); } catch (e) {}
+    return emptyState();
+  }
+  function migrateV1(o) {
+    var s = emptyState();
+    s.settings = o.settings || s.settings; s.students = o.students || []; s.topics = o.topics || s.topics; s.materials = o.materials || s.materials;
+    (o.sessions || []).forEach(function (x) {
+      var present = 0;
+      (x.marked || []).forEach(function (sid) { var on = (x.present || []).indexOf(sid) !== -1; (s.att[sid] = s.att[sid] || {})[x.date] = on; if (on) present++; });
+      s.sessions.push({ id: x.date, date: x.date, presentCount: present, markedCount: (x.marked || []).length });
+    });
+    (o.exams || []).forEach(function (x) {
+      var e = { id: x.id, title: x.title, date: x.date, level: x.level || 'mock', max: x.max }, sc = {};
+      Object.keys(x.scores || {}).forEach(function (sid) { sc[sid] = { score: x.scores[sid] }; });
+      computeExamStats(e, sc); s.exams.push(e); s.scores[e.id] = sc;
+    });
+    (o.questions || []).forEach(function (q) {
+      var acc = null;
+      (q.answers || []).forEach(function (a) { s.answers.push({ id: a.id, questionId: q.id, authorId: a.authorId, body: a.body, createdAt: a.createdAt, ts: a.ts }); if (a.accepted) acc = a.id; });
+      s.questions.push({ id: q.id, topicId: q.topicId, authorId: q.authorId, title: q.title, body: q.body, createdAt: q.createdAt, ts: q.ts, resolved: !!q.resolved, acceptedId: acc });
+    });
+    var kindMap = { olympiad: 'olympiad', deadline: 'task', meeting: 'important', news: 'important' };
+    (o.news || []).forEach(function (n) {
+      s.news.push({ id: n.id, title: n.title, body: n.body, pinned: !!n.pinned, authorId: n.authorId, createdAt: n.createdAt, ts: n.ts });
+      if (n.eventDate) s.deadlines.push({ id: 'd-' + n.id, title: n.title, type: kindMap[n.kind] || 'important', date: n.eventDate, description: null, createdAt: n.createdAt, ts: n.ts });
+    });
+    return s;
+  }
+  function loadPrefs() {
+    try { var u = JSON.parse(localStorage.getItem(UI_KEY) || 'null'); if (u) return u; } catch (e) {}
+    return { role: 'student', meId: null };
+  }
+
+  var state = backend === 'local' ? loadLocal() : emptyState();
+  var prefs = loadPrefs();
+  if (backend === 'local' && prefs.role === 'captain' && state.settings.pinHash) prefs.role = 'student';
+
+  function saveLocal() {
+    if (backend !== 'local') return;
+    try { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+    catch (e) { toast('Не удалось сохранить данные: хранилище браузера переполнено или отключено.', true); }
+  }
+  function savePrefs() { try { localStorage.setItem(UI_KEY, JSON.stringify(prefs)); } catch (e) {} }
+
+  /* ---------- Запись: локально или в Firestore ---------- */
+  function docData(o) { var c = clone(o); delete c.id; return c; }
+  function opSet(col, id, data) { return { type: 'set', path: col + '/' + id, data: data }; }
+  function opDel(col, id) { return { type: 'delete', path: col + '/' + id }; }
+  async function commit(ops) {
+    if (backend !== 'firebase') { saveLocal(); return; }
+    if (!ops || !ops.length) return;
+    var batches = [], batch = null, n = 0;
+    ops.forEach(function (op) {
+      if (!batch || n >= 450) { batch = fb.db.batch(); batches.push(batch); n = 0; }
+      var ref = fb.db.doc(op.path);
+      if (op.type === 'delete') batch.delete(ref); else batch.set(ref, clone(op.data));
+      n++;
+    });
+    for (var i = 0; i < batches.length; i++) await batches[i].commit();
+  }
+  async function persist(ops, okMsg) {
+    try {
+      await commit(ops);
+      if (okMsg) toast(okMsg);
+    } catch (e) {
+      console.error(e);
+      toast(errText(e), true);
+      if (backend === 'firebase') { try { await fbLoadAll(); } catch (x) {} }
+    }
+    repaintAll();
+  }
+  function errText(e) {
+    var code = (e && e.code) || '', m = (e && e.message) || String(e);
+    var map = {
+      'auth/invalid-credential': 'Неверный email или пароль.',
+      'auth/wrong-password': 'Неверный email или пароль.',
+      'auth/user-not-found': 'Пользователь с таким email не найден.',
+      'auth/invalid-email': 'Некорректный email.',
+      'auth/email-already-in-use': 'Этот email уже зарегистрирован. Войдите.',
+      'auth/weak-password': 'Пароль слишком простой: нужно минимум 6 символов.',
+      'auth/too-many-requests': 'Слишком много попыток. Подождите немного.',
+      'auth/network-request-failed': 'Нет связи с Firebase. Проверьте интернет.',
+      'auth/operation-not-allowed': 'В Firebase не включён вход по email и паролю (Authentication → Sign-in method).',
+      'auth/unauthorized-domain': 'Этот адрес сайта не добавлен в Firebase (Authentication → Settings → Authorized domains).',
+      'auth/invalid-api-key': 'Неверный apiKey в настройках Firebase.',
+      'auth/api-key-not-valid.-please-pass-a-valid-api-key.': 'Неверный apiKey в настройках Firebase.',
+      'permission-denied': 'Недостаточно прав. Проверьте правила Firestore и свою роль.',
+      'unavailable': 'Firestore недоступен. Проверьте интернет.',
+      'failed-precondition': 'База Firestore не создана или не настроена.'
+    };
+    if (map[code]) return map[code];
+    if (/permission|insufficient/i.test(m)) return map['permission-denied'];
+    return m;
+  }
+
+  /* ---------- Firebase ---------- */
+  function loadScript(src) {
+    return new Promise(function (res, rej) {
+      var s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = function () { rej(new Error('Не загрузился ' + src)); };
+      document.head.appendChild(s);
+    });
+  }
+  async function loadFirebaseSdk() {
+    if (window.firebase && firebase.firestore && firebase.auth) return;
+    var parts = ['app', 'auth', 'firestore'];
+    for (var i = 0; i < parts.length; i++) {
+      try { await loadScript('https://www.gstatic.com/firebasejs/' + FB_VERSION + '/firebase-' + parts[i] + '-compat.js'); }
+      catch (e) { await loadScript('https://cdn.jsdelivr.net/npm/firebase@' + FB_VERSION + '/firebase-' + parts[i] + '-compat.js'); }
+    }
+  }
+  function col(name) { return fb.db.collection(name); }
+  function docsOf(snap) { return snap.docs.map(function (d) { var o = d.data(); o.id = d.id; return o; }); }
+
+  async function fbLoadAll() {
+    var captain = isCaptain(), me = fb.user.uid;
+    var q = await Promise.all([
+      col('users').get(), col('topics').get(), col('materials').get(), col('news').get(), col('deadlines').get(),
+      col('questions').get(), col('answers').get(), col('exams').get(), col('sessions').get(), fb.db.doc('config/team').get(),
+      captain ? col('scores').get() : col('scores').where('uid', '==', me).get(),
+      captain ? col('attendance').get() : col('attendance').where('uid', '==', me).get(),
+      captain ? col('progress').get() : fb.db.doc('progress/' + me).get()
+    ]);
+    var s = emptyState();
+    fb.users = docsOf(q[0]);
+    s.students = fb.users.filter(function (u) { return u.role === 'student'; });
+    s.topics = docsOf(q[1]);
+    s.materials = docsOf(q[2]);
+    s.news = docsOf(q[3]);
+    s.deadlines = docsOf(q[4]);
+    s.questions = docsOf(q[5]);
+    s.answers = docsOf(q[6]);
+    s.exams = docsOf(q[7]);
+    s.sessions = docsOf(q[8]);
+    if (q[9].exists) { var cfg = q[9].data(); s.settings.teamName = cfg.teamName || s.settings.teamName; }
+    docsOf(q[10]).forEach(function (r) { (s.scores[r.examId] = s.scores[r.examId] || {})[r.uid] = { score: r.score, rank: r.rank, total: r.total }; });
+    docsOf(q[11]).forEach(function (r) { (s.att[r.uid] = s.att[r.uid] || {})[r.date] = !!r.present; });
+    if (captain) docsOf(q[12]).forEach(function (p) { s.progress[p.id] = p.statuses || {}; });
+    else if (q[12].exists) s.progress[me] = q[12].data().statuses || {};
+    fb.profile = fb.users.find(function (u) { return u.id === me; }) || fb.profile;
+    state = s;
+    if (captain && !s.topics.length) await fbSeedDefaults();
+  }
+  async function fbSeedDefaults() {
+    var ops = [];
+    defaultTopics().forEach(function (t) { state.topics.push(t); ops.push(opSet('topics', t.id, docData(t))); });
+    if (!state.materials.some(function (m) { return m.category === 'textbook'; })) {
+      defaultBooks(fb.user.uid).forEach(function (b) { state.materials.push(b); ops.push(opSet('materials', b.id, docData(b))); });
+    }
+    ops.push(opSet('config', 'team', { teamName: state.settings.teamName }));
+    await commit(ops);
+    toast('Силлабус и 11 учебников загружены в базу');
+  }
+
+  /* ---------- Файлы (только локальный режим): IndexedDB ---------- */
+  var idbPromise = null;
+  function idb() {
+    if (!idbPromise) idbPromise = new Promise(function (res, rej) {
+      if (!window.indexedDB) return rej(new Error('IndexedDB недоступен'));
+      var r = indexedDB.open('geo-olymp-files', 1);
+      r.onupgradeneeded = function () { r.result.createObjectStore('files'); };
+      r.onsuccess = function () { res(r.result); };
+      r.onerror = function () { rej(r.error || new Error('IndexedDB недоступен')); };
+    });
+    return idbPromise;
+  }
+  function idbOp(mode, fn) {
+    return idb().then(function (db) {
+      return new Promise(function (res, rej) {
+        var tx = db.transaction('files', mode), req = fn(tx.objectStore('files')), out;
+        if (req) req.onsuccess = function () { out = req.result; };
+        tx.oncomplete = function () { res(out); };
+        tx.onerror = function () { rej(tx.error); };
+        tx.onabort = function () { rej(tx.error || new Error('Операция отменена')); };
+      });
+    });
+  }
+  function idbPut(id, blob) { return idbOp('readwrite', function (s) { return s.put(blob, id); }); }
+  function idbGet(id) { return idbOp('readonly', function (s) { return s.get(id); }); }
+  function idbDel(id) { return idbOp('readwrite', function (s) { return s.delete(id); }).catch(function () {}); }
+  function dataUrlToBlob(u) {
+    var i = u.indexOf(','), meta = u.slice(5, i), b64 = /;base64/.test(meta), type = meta.replace(/;base64/, '') || 'application/octet-stream';
+    var raw = b64 ? atob(u.slice(i + 1)) : decodeURIComponent(u.slice(i + 1)), arr = new Uint8Array(raw.length);
+    for (var k = 0; k < raw.length; k++) arr[k] = raw.charCodeAt(k);
+    return new Blob([arr], { type: type });
+  }
+  function blobToDataUrl(b) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = function () { rej(r.error); }; r.readAsDataURL(b); }); }
+  async function getFileBlob(id) {
+    try { var b = await idbGet(id); if (b) return b; } catch (e) {}
+    if (SEED && SEED.files && SEED.files[id]) return dataUrlToBlob(SEED.files[id]);
+    return null;
+  }
+
+  var downloadsCap = null;
+  async function saveFile(filename, data) {
+    if (inClaude) {
+      if (!downloadsCap) downloadsCap = window.claude.use('downloads');
+      var dl = await downloadsCap;
+      if (dl) {
+        try { await dl.save({ filename: filename, data: data }); return true; }
+        catch (e) {
+          if (e && e.code === 'declined') return false;
+          if (e && (e.code === 'rejected_extension' || e.code === 'extension_not_enabled')) { toast('Файл с таким расширением нельзя скачать в окне Claude. Он скачается с опубликованного сайта.', true); return false; }
+          if (e && e.code === 'rate_limited') { toast('Окно сохранения уже открыто. Подождите и попробуйте снова.', true); return false; }
+          throw e;
+        }
+      }
+    }
+    var blob = data instanceof Blob ? data : new Blob([data], { type: 'application/octet-stream' });
+    var url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = filename; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+    return true;
+  }
+
+  /* =================================================================
+     Пользователь и роли
+     ================================================================= */
+  function isCaptain() { return backend === 'firebase' ? !!(fb.profile && fb.profile.role === 'captain') : prefs.role === 'captain'; }
+  function myId() {
+    if (backend === 'firebase') return fb.user ? fb.user.uid : null;
+    return isCaptain() ? 'captain' : (state.students.some(function (s) { return s.id === prefs.meId; }) ? prefs.meId : null);
+  }
+  function myStudentId() { return isCaptain() ? null : myId(); }
+  function studentById(id) { return state.students.find(function (s) { return s.id === id; }); }
+  function personName(id) {
+    if (backend === 'firebase') { var u = fb.users.find(function (x) { return x.id === id; }); return u ? u.name : 'Участник'; }
+    if (id === 'captain') return state.settings.captainName || 'Капитан';
+    var s = studentById(id); return s ? s.name : 'Участник';
+  }
+  function isCaptainId(id) {
+    if (backend === 'firebase') { var u = fb.users.find(function (x) { return x.id === id; }); return !!(u && u.role === 'captain'); }
+    return id === 'captain';
+  }
+  function captainBadge(id) { return isCaptainId(id) ? '<span class="badge b-sea">Капитан</span>' : ''; }
+  function students() { return state.students.slice().sort(function (a, b) { return String(a.name).localeCompare(String(b.name), 'ru'); }); }
+  function roots() { return state.topics.filter(function (t) { return !t.parentId; }).sort(function (a, b) { return a.order - b.order; }); }
+  function children(id) { return state.topics.filter(function (t) { return t.parentId === id; }).sort(function (a, b) { return a.order - b.order; }); }
+  function topicById(id) { return state.topics.find(function (t) { return t.id === id; }); }
+  function topicFamily(id) { return [id].concat(children(id).map(function (c) { return c.id; })); }
+  function topicLabel(id) {
+    var t = topicById(id); if (!t) return '';
+    var p = t.parentId ? topicById(t.parentId) : null;
+    return p ? p.title + ': ' + t.title : (t.kind === 'official' ? t.order + '. ' : '') + t.title;
+  }
+  function statusOf(sid, tid) { return ((state.progress[sid] || {})[tid]) || 'none'; }
+
+  /* =================================================================
+     Интерфейс: уведомления, подтверждения, модальные окна
+     ================================================================= */
+  function toast(msg, isError) {
+    var root = $('#toast-root'); if (!root) { if (isError) console.warn(msg); return; }
+    var el = document.createElement('div');
+    el.className = 'pointer-events-auto max-w-sm rounded-lg border px-4 py-3 text-sm shadow-lg bg-surface ' + (isError ? 'border-danger/40 text-danger' : 'border-line');
+    el.setAttribute('role', isError ? 'alert' : 'status');
+    el.textContent = msg;
+    root.appendChild(el);
+    setTimeout(function () { el.remove(); }, isError ? 6000 : 3400);
+  }
+  var armed = null, armTimer = null;
+  function isArmed(k) { return armed === k; }
+  function arm(k) {
+    if (armed === k) { armed = null; return true; }
+    armed = k; clearTimeout(armTimer);
+    armTimer = setTimeout(function () { if (armed === k) { armed = null; repaintAll(); } }, 4000);
+    return false;
+  }
+  function deleteBtn(action, key, attrs, label) {
+    return '<button type="button" class="btn btn-danger btn-sm" data-action="' + action + '" ' + (attrs || '') + '>' + ic('trash-2', 'h-3.5 w-3.5') + (isArmed(key) ? 'Нажмите ещё раз' : (label || 'Удалить')) + '</button>';
+  }
+  function busy(f, on, label) {
+    var b = f.querySelector('button[type="submit"]'); if (!b) return;
+    if (on) { b.dataset.label = b.dataset.label || b.innerHTML; b.disabled = true; b.textContent = label || 'Сохранение…'; }
+    else { b.disabled = false; if (b.dataset.label) b.innerHTML = b.dataset.label; icons(); }
+  }
+  function showErr(f, msg) {
+    var p = f.querySelector('[data-error]') || (f.parentNode && f.parentNode.querySelector && f.parentNode.querySelector('[data-error]'));
+    if (p) { p.textContent = msg; p.classList.remove('hidden'); } else toast(msg, true);
+  }
+  var modal = null;
+  function modalHead(title, sub, eyebrow) {
+    return '<div class="flex items-start gap-4"><div class="min-w-0 flex-1">' + (eyebrow ? '<p class="m-0 text-sm text-slate">' + eyebrow + '</p>' : '') +
+      '<h2 id="modal-title" class="text-xl leading-snug">' + title + '</h2>' + (sub ? '<p class="m-0 mt-1.5 text-slate">' + sub + '</p>' : '') +
+      '</div><button type="button" data-action="close-modal" class="btn btn-ghost -mr-2 -mt-1 p-2" aria-label="Закрыть">' + ic('x', 'h-5 w-5') + '</button></div>';
+  }
+  function formError() { return '<p data-error class="m-0 mt-4 hidden rounded-md bg-danger/10 px-3 py-2 text-sm text-danger" role="alert"></p>'; }
+  function modalFoot(label) {
+    return formError() + '<div class="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"><button type="button" class="btn btn-secondary" data-action="close-modal">Отмена</button>' +
+      '<button type="submit" class="btn btn-primary">' + label + '</button></div>';
+  }
+  function openModal(renderFn, opts) {
+    modal = { render: renderFn, wide: !!(opts && opts.wide), back: document.activeElement };
+    document.body.style.overflow = 'hidden';
+    drawModal();
+    var f = $('#modal-root [autofocus]') || $('#modal-panel'); if (f) f.focus();
+  }
+  function drawModal() {
+    if (!modal) return;
+    $('#modal-root').innerHTML = '<div class="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-title">' +
+      '<div class="absolute inset-0 bg-black/50" data-action="close-modal"></div>' +
+      '<div id="modal-panel" tabindex="-1" class="relative max-h-[92vh] w-full overflow-y-auto rounded-t-2xl border border-line bg-surface p-5 sm:rounded-xl sm:p-6 ' + (modal.wide ? 'sm:max-w-2xl' : 'sm:max-w-lg') +
+      '" style="padding-bottom:calc(1.5rem + env(safe-area-inset-bottom, 0px))">' + modal.render() + '</div></div>';
+    icons();
+  }
+  function refreshModal() { if (!modal) return; var p = $('#modal-panel'), top = p ? p.scrollTop : 0; drawModal(); p = $('#modal-panel'); if (p) p.scrollTop = top; }
+  function closeModal() {
+    if (!modal) return;
+    var back = modal.back; modal = null;
+    $('#modal-root').innerHTML = ''; document.body.style.overflow = '';
+    if (back && document.body.contains(back) && back.focus) back.focus();
+  }
+
+  /* =================================================================
+     Общие блоки
+     ================================================================= */
+  function pageHead(title, lead, actions) {
+    return '<div class="flex flex-wrap items-end justify-between gap-4"><div><h1 class="page-title">' + title + '</h1>' + (lead ? '<p class="page-lead">' + lead + '</p>' : '') + '</div>' +
+      (actions ? '<div class="flex flex-wrap items-center gap-2">' + actions + '</div>' : '') + '</div>';
+  }
+  function kpi(label, value, sub, subClass) {
+    return '<div class="bg-surface p-4"><dt class="text-sm text-slate">' + label + '</dt><dd class="m-0 mt-1.5 font-display text-2xl">' + value + '</dd><dd class="m-0 mt-1 text-sm ' + (subClass || 'text-slate') + '">' + sub + '</dd></div>';
+  }
+  function kpiGrid(items) { return '<dl class="m-0 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-line lg:grid-cols-4">' + items.join('') + '</dl>'; }
+  function trendLine(d, suffix) {
+    if (d == null) return '<p class="m-0 text-sm text-slate">Для сравнения нужно минимум две олимпиады</p>';
+    var flat = Math.abs(d) < 0.05, up = d > 0;
+    return '<p class="m-0 flex items-center gap-1.5 text-sm font-medium ' + (flat ? 'text-slate' : up ? 'text-moss' : 'text-danger') + '">' + ic(flat ? 'minus' : up ? 'trending-up' : 'trending-down') + fmtDelta(d) + ' ' + (suffix || 'к прошлой олимпиаде') + '</p>';
+  }
+  function emptyBox(icon, title, text, action) {
+    return '<div class="rounded-lg border border-dashed border-line px-6 py-10 text-center"><div class="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-line/50 text-slate">' + ic(icon, 'h-5 w-5') + '</div>' +
+      '<p class="m-0 mt-3 font-medium">' + title + '</p><p class="mx-auto m-0 mt-1 max-w-md text-sm text-slate">' + text + '</p>' + (action || '') + '</div>';
+  }
+  function searchBox(id, value, placeholder, model) {
+    return '<label for="' + id + '" class="sr-only">' + placeholder + '</label><div class="relative"><span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate">' + ic('search') + '</span>' +
+      '<input id="' + id + '" type="search" class="input" style="padding-left:2.5rem" placeholder="' + placeholder + '" value="' + esc(value) + '" data-input="' + model + '" autocomplete="off"></div>';
+  }
+  function topicSelect(id, name, selected, noneLabel, attrs) {
+    var html = '<option value="">' + (noneLabel || 'Без темы') + '</option>';
+    roots().forEach(function (r) {
+      html += '<optgroup label="' + esc((r.kind === 'official' ? r.order + '. ' : '') + r.title) + '"><option value="' + r.id + '"' + (selected === r.id ? ' selected' : '') + '>Весь раздел</option>' +
+        children(r.id).map(function (c) { return '<option value="' + c.id + '"' + (selected === c.id ? ' selected' : '') + '>' + esc(c.title) + '</option>'; }).join('') + '</optgroup>';
+    });
+    return '<select id="' + id + '" name="' + name + '" class="input" ' + (attrs || '') + '>' + html + '</select>';
+  }
+  function needMe() {
+    return emptyBox('user-round', 'Выберите себя', 'В шапке сайта выберите своё имя в списке «Я», чтобы видеть личный прогресс, отмечать статусы тем и писать на форуме.');
+  }
+  function nextDeadline() {
+    var t = todayISO();
+    return state.deadlines.filter(function (d) { return d.date >= t; }).sort(byDate)[0] || null;
+  }
+  function deadlineBanner() {
+    var d = nextDeadline(); if (!d) return '';
+    var ty = DL_TYPES[d.type] || DL_TYPES.important, left = daysUntil(d.date);
+    return '<a href="#news" class="mb-6 flex items-center gap-4 rounded-lg border border-line bg-surface p-4 hover:border-sea" style="text-decoration:none;color:inherit">' +
+      '<div class="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-md bg-sea-deep text-on-deep"><span class="font-display text-xl leading-none">' + Math.max(left, 0) + '</span><span class="mt-1 text-[10px] uppercase tracking-wide opacity-80">' + plural(left, 'день', 'дня', 'дней') + '</span></div>' +
+      '<div class="min-w-0 flex-1"><span class="badge ' + ty.badge + '">' + ty.label + '</span><p class="m-0 mt-1 font-medium">' + esc(countdownText(d.date, d.title)) + '</p><p class="m-0 text-sm text-slate">' + fmtDate(d.date, true) + '</p></div>' + ic('chevron-right', 'h-4 w-4 text-slate') + '</a>';
+  }
+
+  /* =================================================================
+     Материалы
+     ================================================================= */
+  function materialItem(m, showTopic) {
+    var c = CATEGORIES[m.category] || CATEGORIES.other, canEdit = isCaptain() || (m.by && m.by === myId()), actions = [];
+    if (m.fileId) actions.push('<button type="button" class="btn btn-secondary btn-sm" data-action="download-file" data-id="' + m.id + '">' + ic('download', 'h-3.5 w-3.5') + 'Скачать</button>');
+    if (m.url) actions.push('<a href="' + esc(m.url) + '" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">' + ic('external-link', 'h-3.5 w-3.5') + 'Открыть: ' + esc(linkService(m.url)) + '</a>');
+    if (!m.fileId && !m.url) actions.push('<span class="py-1.5 text-sm text-slate">Файл или ссылка не добавлены</span>');
+    if (canEdit) {
+      actions.push('<button type="button" class="btn btn-ghost btn-sm" data-action="edit-material" data-id="' + m.id + '">' + ic('pencil', 'h-3.5 w-3.5') + (m.fileId || m.url ? 'Изменить' : 'Прикрепить') + '</button>');
+      actions.push(deleteBtn('delete-material', 'mat:' + m.id, 'data-id="' + m.id + '"'));
+    }
+    var meta = [c.label]; if (m.author) meta.push(esc(m.author)); if (m.fileSize) meta.push(fmtSize(m.fileSize));
+    return '<li class="flex gap-3 py-3.5"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-sea/10 text-sea">' + ic(c.icon, 'h-5 w-5') + '</span>' +
+      '<div class="min-w-0 flex-1"><p class="m-0 font-medium">' + esc(m.title) + '</p><p class="m-0 mt-0.5 text-sm text-slate">' + meta.join(', ') + '. Добавил(а) ' + esc(personName(m.by)) + ', ' + fmtDate(m.createdAt) + '</p>' +
+      (showTopic && m.topicId && topicById(m.topicId) ? '<p class="m-0 mt-0.5 text-sm text-sea">' + esc(topicLabel(m.topicId)) + '</p>' : '') +
+      (m.description ? '<p class="m-0 mt-1 text-sm">' + esc(m.description) + '</p>' : '') +
+      ((m.tags || []).length ? '<div class="mt-2 flex flex-wrap gap-1.5">' + m.tags.map(function (g) { return '<span class="rounded bg-paper px-2 py-0.5 text-xs text-slate">' + esc(g) + '</span>'; }).join('') + '</div>' : '') +
+      '<div class="mt-2.5 flex flex-wrap gap-2">' + actions.join('') + '</div></div></li>';
+  }
+  var editing = null;
+  function materialForm(opts) {
+    var m = opts.material || null, allowFile = backend === 'local';
+    return function () {
+      var source = m ? (m.fileId ? 'file' : m.url ? 'link' : 'none') : (allowFile ? 'file' : 'link');
+      var cat = m ? m.category : (opts.category || 'lecture');
+      function radio(v, label) { return '<label class="seg-btn cursor-pointer"><input type="radio" name="source" value="' + v + '" class="sr-only"' + (source === v ? ' checked' : '') + ' data-change="mat-source">' + label + '</label>'; }
+      return '<form data-form="material" novalidate>' + modalHead(m ? 'Изменить материал' : 'Добавить материал', allowFile ? 'Файл с компьютера (до 25 MB) или ссылка на Google Диск, Telegram, Яндекс Диск.' : 'Ссылка на Google Диск, Telegram или Яндекс Диск. Хранилище файлов Firebase требует платного тарифа, поэтому здесь только ссылки.') +
+        '<div class="mt-5 space-y-4"><div><label for="mf-topic" class="label">Тема силлабуса</label>' + topicSelect('mf-topic', 'topic', m ? m.topicId : opts.topicId, 'Без темы (только в библиотеке)') + '</div>' +
+        '<div><label for="mf-title" class="label">Название</label><input id="mf-title" name="title" class="input" value="' + esc(m ? m.title : '') + '" placeholder="Например, задачи на масштаб с ответами"></div>' +
+        '<div class="grid gap-4 sm:grid-cols-2"><div><label for="mf-cat" class="label">Категория</label><select id="mf-cat" name="category" class="input">' +
+        Object.keys(CATEGORIES).map(function (k) { return '<option value="' + k + '"' + (k === cat ? ' selected' : '') + '>' + CATEGORIES[k].label + '</option>'; }).join('') + '</select></div>' +
+        '<div><label for="mf-author" class="label">Автор (необязательно)</label><input id="mf-author" name="author" class="input" value="' + esc(m ? m.author || '' : '') + '"></div></div>' +
+        '<fieldset class="m-0 border-0 p-0"><legend class="label">Источник</legend><div class="seg">' + (allowFile ? radio('file', 'Файл') : '') + radio('link', 'Ссылка') + radio('none', 'Без файла') + '</div></fieldset>' +
+        (allowFile ? '<div data-source="file"' + (source === 'file' ? '' : ' class="hidden"') + '>' + (m && m.fileId ? '<p class="m-0 mb-2 text-sm text-slate">Сейчас прикреплён: ' + esc(m.fileName) + '. Выберите новый файл, чтобы заменить.</p>' : '') +
+          '<label for="mf-file" class="flex cursor-pointer flex-col items-center gap-2 rounded-lg border-2 border-dashed border-line bg-field px-4 py-6 text-center hover:border-sea">' + ic('upload', 'h-6 w-6 text-sea') +
+          '<span class="font-medium">Выберите файл</span><span id="file-info" class="text-sm text-slate">PDF, презентация, документ или изображение, до 25 MB</span></label><input id="mf-file" name="file" type="file" class="sr-only" data-change="mat-file"></div>' : '') +
+        '<div data-source="link"' + (source === 'link' ? '' : ' class="hidden"') + '><label for="mf-url" class="label">Ссылка</label><input id="mf-url" name="url" type="url" class="input" placeholder="https://drive.google.com/… или https://t.me/…" value="' + esc(m ? m.url || '' : '') + '"></div>' +
+        '<div data-source="none"' + (source === 'none' ? '' : ' class="hidden"') + '><p class="m-0 text-sm text-slate">Карточка без файла, например учебник из библиотеки лицея.</p></div>' +
+        '<div><label for="mf-tags" class="label">Теги через запятую</label><input id="mf-tags" name="tags" class="input" placeholder="практика, прошлые годы" value="' + esc(m ? (m.tags || []).join(', ') : '') + '"></div>' +
+        '<div><label for="mf-desc" class="label">Описание (необязательно)</label><textarea id="mf-desc" name="description" rows="2" class="input">' + esc(m ? m.description || '' : '') + '</textarea></div></div>' +
+        modalFoot(m ? 'Сохранить' : 'Добавить материал') + '</form>';
+    };
+  }
+  async function saveMaterial(f) {
+    var old = editing, by = myId();
+    if (!by) return showErr(f, 'Сначала выберите себя в шапке сайта (список «Я»).');
+    var topicId = val(f, 'topic') || null, source = f.querySelector('input[name="source"]:checked').value;
+    var fileInput = f.elements.namedItem('file'), file = source === 'file' && fileInput && fileInput.files ? fileInput.files[0] : null;
+    var title = val(f, 'title') || (file ? file.name.replace(/\.[^.]+$/, '') : '');
+    if (!title) return showErr(f, 'Укажите название материала.');
+    if (source === 'file' && !file && !(old && old.fileId)) return showErr(f, 'Выберите файл или переключите источник.');
+    if (file && file.size > MAX_FILE) return showErr(f, 'Файл больше 25 MB. Загрузите его на Google Диск или в Telegram и добавьте ссылкой.');
+    var url = val(f, 'url');
+    if (source === 'link' && !isHttpUrl(url)) return showErr(f, 'Ссылка должна начинаться с http:// или https://');
+    var m = old ? old : { id: uid('m'), by: by, createdAt: todayISO(), ts: Date.now() }, oldFileId = old ? old.fileId : null;
+    m.topicId = topicId; m.title = title; m.author = val(f, 'author') || null; m.category = val(f, 'category');
+    m.description = val(f, 'description') || null; m.tags = val(f, 'tags').split(',').map(function (x) { return x.trim(); }).filter(Boolean);
+    m.url = source === 'link' ? url : null;
+    if (file) {
+      busy(f, true, 'Сохранение файла…');
+      var fid = uid('f');
+      try { await idbPut(fid, file); } catch (e) { busy(f, false); return showErr(f, 'Не удалось сохранить файл в браузере. Добавьте его ссылкой.'); }
+      m.fileId = fid; m.fileName = file.name; m.fileSize = file.size; m.fileType = file.type || null;
+      if (oldFileId) idbDel(oldFileId);
+    } else if (source !== 'file') {
+      if (oldFileId) idbDel(oldFileId);
+      m.fileId = null; m.fileName = null; m.fileSize = null; m.fileType = null;
+    }
+    if (!old) state.materials.push(m);
+    editing = null; closeModal();
+    await persist([opSet('materials', m.id, docData(m))], old ? 'Материал сохранён' : 'Материал добавлен');
+    if (route === 'syllabus' && topicId) openTopic(topicId);
+  }
+
+  /* =================================================================
+     Страница: Силлабус
+     ================================================================= */
+  var sy = { q: '' };
+  function pageSyllabus() {
+    return pageHead('Силлабус', '12 официальных разделов олимпиады и математические навыки. Нажмите на раздел, чтобы открыть подтемы, материалы' + (isCaptain() ? ' и прогресс команды.' : ' и отметить свой статус.'),
+      '<button type="button" class="btn btn-primary" data-action="add-material">' + ic('upload') + 'Добавить материал</button>') +
+      '<div class="mt-6">' + searchBox('sy-q', sy.q, 'Поиск по разделам, подтемам и материалам', 'sy-q') + '</div><div id="sy-list">' + syList() + '</div>';
+  }
+  function syList() {
+    var q = norm(sy.q), found = 0, me = myStudentId();
+    function block(root) {
+      var subs = children(root.id), fam = topicFamily(root.id);
+      var mats = state.materials.filter(function (m) { return fam.indexOf(m.topicId) !== -1; }), ms = [], mm = [];
+      if (q) {
+        var inRoot = norm(root.title).indexOf(q) !== -1;
+        ms = subs.filter(function (s) { return norm(s.title).indexOf(q) !== -1; });
+        mm = mats.filter(function (m) { return norm(m.title + ' ' + (m.author || '') + ' ' + (m.tags || []).join(' ') + ' ' + (m.description || '')).indexOf(q) !== -1; });
+        if (!inRoot && !ms.length && !mm.length) return '';
+      }
+      found++;
+      var right = '';
+      if (isCaptain() && state.students.length) {
+        var n = state.students.length, learned = state.students.filter(function (s) { return statusOf(s.id, root.id) === 'learned'; }).length;
+        right = '<div class="hidden w-28 shrink-0 sm:block"><div class="h-1.5 overflow-hidden rounded-full bg-line"><div class="h-full bg-moss" style="width:' + Math.round(learned / n * 100) + '%"></div></div><p class="m-0 mt-1 text-xs text-slate">Изучили ' + learned + ' из ' + n + '</p></div>';
+      } else if (me) {
+        var st = statusOf(me, root.id); right = '<span class="badge ' + STATUS_BADGE[st] + '">' + STATUSES[st] + '</span>';
+      }
+      return '<li><button type="button" class="row-btn" data-action="open-topic" data-id="' + root.id + '">' +
+        '<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-line bg-paper font-display text-sm text-sea">' + (root.kind === 'official' ? root.order : ic('sigma', 'h-4 w-4')) + '</span>' +
+        '<span class="min-w-0 flex-1"><span class="block font-medium">' + esc(root.title) + '</span><span class="mt-0.5 block text-sm text-slate">' + subs.length + ' ' + plural(subs.length, 'подтема', 'подтемы', 'подтем') + ', ' + mats.length + ' ' + plural(mats.length, 'материал', 'материала', 'материалов') + '</span>' +
+        (ms.length ? '<span class="mt-1 block text-sm text-sea">Подтемы: ' + ms.slice(0, 3).map(function (s) { return esc(s.title); }).join('; ') + '</span>' : '') +
+        (mm.length ? '<span class="mt-1 block text-sm text-sea">Материалы: ' + mm.slice(0, 2).map(function (m) { return esc(m.title); }).join('; ') + '</span>' : '') +
+        '</span>' + right + ic('chevron-right', 'h-4 w-4 text-slate') + '</button></li>';
+    }
+    var official = roots().filter(function (r) { return r.kind === 'official'; }).map(block).join('');
+    var other = roots().filter(function (r) { return r.kind !== 'official'; }).map(block).join('');
+    if (!found) return '<div class="mt-8">' + emptyBox('search', 'Ничего не найдено', 'Измените запрос.', '<button type="button" class="btn btn-secondary mt-4" data-action="sy-reset">Сбросить поиск</button>') + '</div>';
+    var ul = '<ul class="m-0 mt-3 list-none divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface p-0">';
+    return (official ? '<section class="mt-7"><h2 class="text-lg">Разделы программы</h2>' + ul + official + '</ul></section>' : '') + (other ? '<section class="mt-7"><h2 class="text-lg">Математика для географии</h2>' + ul + other + '</ul></section>' : '');
+  }
+  function openTopic(id) { openModal(function () { return topicModal(id); }, { wide: true }); }
+  function topicModal(id) {
+    var t = topicById(id); if (!t) return modalHead('Тема не найдена', 'Возможно, её удалили.');
+    var parent = t.parentId ? topicById(t.parentId) : null, me = myStudentId();
+    var eyebrow = parent ? '<button type="button" class="link-btn" data-action="open-topic" data-id="' + parent.id + '">' + esc(parent.title) + '</button>' : (t.kind === 'official' ? 'Раздел ' + t.order + ' из 12' : 'Математические навыки');
+    var mats = state.materials.filter(function (m) { return m.topicId === id; }).sort(function (a, b) { return (b.ts || 0) - (a.ts || 0); });
+    var qCount = state.questions.filter(function (q) { return topicFamily(id).indexOf(q.topicId) !== -1; }).length;
+    var html = modalHead(esc(t.title), '', eyebrow);
+    if (isCaptain()) {
+      if (state.students.length) {
+        var c = { none: 0, in_progress: 0, learned: 0, review: 0 }, n = state.students.length;
+        state.students.forEach(function (s) { c[statusOf(s.id, id)]++; });
+        var colors = { learned: 'bg-moss', in_progress: 'bg-sea', review: 'bg-ochre', none: 'bg-line' };
+        var needRev = state.students.filter(function (s) { return statusOf(s.id, id) === 'review'; });
+        html += '<section class="mt-5 rounded-lg border border-line bg-field p-4"><h3 class="panel-title">Прогресс команды по теме</h3><div class="mt-3 flex h-2.5 overflow-hidden rounded-full bg-line">' +
+          ['learned', 'in_progress', 'review'].map(function (k) { return c[k] ? '<div class="' + colors[k] + '" style="width:' + (c[k] / n * 100) + '%"></div>' : ''; }).join('') + '</div>' +
+          '<div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">' + STATUS_ORDER.map(function (k) { return '<span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-sm ' + colors[k] + '"></span>' + STATUSES[k] + ': <b class="tnum">' + c[k] + '</b></span>'; }).join('') + '</div>' +
+          (needRev.length ? '<p class="m-0 mt-3 text-sm text-slate">На повторении: ' + needRev.map(function (s) { return esc(s.name); }).join(', ') + '</p>' : '') + '</section>';
+      }
+    } else if (me) {
+      var cur = statusOf(me, id);
+      html += '<section class="mt-5"><h3 class="label">Мой статус</h3><div class="grid grid-cols-2 gap-2 sm:grid-cols-4" role="group" aria-label="Мой статус по теме">' +
+        STATUS_ORDER.map(function (k) { var on = cur === k; return '<button type="button" data-action="set-status" data-topic="' + id + '" data-status="' + k + '" aria-pressed="' + on + '" class="btn ' + (on ? STATUS_BADGE[k] : 'btn-secondary') + '" style="border-radius:.375rem' + (on ? ';border-color:currentColor' : '') + '">' + STATUSES[k] + '</button>'; }).join('') + '</div></section>';
+    }
+    if (!parent) {
+      var subs = children(id);
+      html += '<section class="mt-6"><h3 class="panel-title">Подтемы (' + subs.length + ')</h3>' +
+        (subs.length ? '<ul class="m-0 mt-2 list-none divide-y divide-line rounded-lg border border-line bg-field p-0">' + subs.map(function (s) {
+          var nm = state.materials.filter(function (m) { return m.topicId === s.id; }).length, st = me ? statusOf(me, s.id) : null;
+          return '<li class="flex items-center gap-2 pr-2"><button type="button" class="row-btn flex-1" style="padding-top:.75rem;padding-bottom:.75rem" data-action="open-topic" data-id="' + s.id + '"><span class="min-w-0 flex-1"><span class="block font-medium">' + esc(s.title) + '</span>' +
+            (nm ? '<span class="block text-sm text-slate">' + nm + ' ' + plural(nm, 'материал', 'материала', 'материалов') + '</span>' : '') + '</span>' + (st ? '<span class="badge ' + STATUS_BADGE[st] + '">' + STATUSES[st] + '</span>' : '') + ic('chevron-right', 'h-4 w-4 text-slate') + '</button>' +
+            (isCaptain() ? deleteBtn('delete-topic', 'topic:' + s.id, 'data-id="' + s.id + '"') : '') + '</li>';
+        }).join('') + '</ul>' : '<p class="m-0 mt-2 text-sm text-slate">Подтем пока нет.' + (isCaptain() ? ' Добавьте их по официальной программе.' : '') + '</p>') +
+        (isCaptain() ? '<form data-form="subtopic" data-parent="' + id + '" class="mt-3 flex gap-2" novalidate><label for="st-title" class="sr-only">Новая подтема</label><input id="st-title" name="title" class="input" placeholder="Новая подтема"><button type="submit" class="btn btn-secondary shrink-0">' + ic('plus', 'h-3.5 w-3.5') + 'Добавить</button></form>' + formError() : '') + '</section>';
+    }
+    html += '<section class="mt-6"><div class="flex items-center justify-between gap-3"><h3 class="panel-title">Материалы' + (parent ? '' : ' раздела') + ' (' + mats.length + ')</h3>' +
+      '<button type="button" class="btn btn-secondary btn-sm" data-action="add-material" data-topic="' + id + '"' + (t.kind === 'math' ? ' data-category="math"' : '') + '>' + ic('upload', 'h-3.5 w-3.5') + 'Добавить</button></div>' +
+      (mats.length ? '<ul class="m-0 mt-1 list-none divide-y divide-line p-0">' + mats.map(function (m) { return materialItem(m, false); }).join('') + '</ul>' : '<p class="m-0 mt-3 text-sm text-slate">Материалов пока нет.</p>') + '</section>' +
+      '<section class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg bg-paper px-4 py-3"><p class="m-0 text-sm">' + (qCount ? qCount + ' ' + plural(qCount, 'вопрос', 'вопроса', 'вопросов') + ' по теме' : 'Вопросов по теме пока нет') + '</p>' +
+      '<div class="flex gap-2">' + (qCount ? '<button type="button" class="btn btn-ghost btn-sm" data-action="qa-topic-open" data-topic="' + id + '">Смотреть</button>' : '') + '<button type="button" class="btn btn-secondary btn-sm" data-action="ask-question" data-topic="' + id + '">Задать вопрос</button></div></section>';
+    return html;
+  }
+
+  /* =================================================================
+     Страница: Библиотека
+     ================================================================= */
+  var lib = { q: '', cat: 'all' };
+  function pageLibrary() {
+    var chips = [['all', 'Все']].concat(Object.keys(CATEGORIES).map(function (k) { return [k, CATEGORIES[k].label]; }));
+    return pageHead('Библиотека', 'Все материалы сборной: 11 рекомендованных учебников, математика, конспекты, варианты и видео.',
+      '<button type="button" class="btn btn-primary" data-action="add-material"' + (lib.cat !== 'all' ? ' data-category="' + lib.cat + '"' : '') + '>' + ic('upload') + 'Добавить материал</button>') +
+      '<div class="mt-6">' + searchBox('lib-q', lib.q, 'Поиск по названию, автору и тегам', 'lib-q') + '</div>' +
+      '<div class="-mx-4 mt-3 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0" role="group" aria-label="Категория">' + chips.map(function (c) {
+        var n = c[0] === 'all' ? state.materials.length : state.materials.filter(function (m) { return m.category === c[0]; }).length;
+        return '<button type="button" class="chip" data-action="lib-cat" data-id="' + c[0] + '" aria-pressed="' + (lib.cat === c[0]) + '">' + c[1] + '<span style="opacity:.7">' + n + '</span></button>';
+      }).join('') + '</div><div id="lib-list" class="mt-4">' + libList() + '</div>';
+  }
+  function libList() {
+    var q = norm(lib.q);
+    var list = state.materials.filter(function (m) {
+      if (lib.cat !== 'all' && m.category !== lib.cat) return false;
+      return !q || norm(m.title + ' ' + (m.author || '') + ' ' + (m.tags || []).join(' ') + ' ' + (m.description || '') + ' ' + topicLabel(m.topicId)).indexOf(q) !== -1;
+    }).sort(function (a, b) {
+      var ta = a.category === 'textbook', tb = b.category === 'textbook';
+      if (ta !== tb) return ta ? -1 : 1;
+      return ta ? (a.ts || 0) - (b.ts || 0) : (b.ts || 0) - (a.ts || 0);
+    });
+    if (!list.length) return emptyBox('library', 'Материалов не найдено', 'Измените фильтр или добавьте первый материал.');
+    return '<ul class="m-0 list-none divide-y divide-line rounded-lg border border-line bg-surface px-4">' + list.map(function (m) { return materialItem(m, true); }).join('') + '</ul>';
+  }
+
+  /* =================================================================
+     Аналитика: пересчёт сводных показателей
+     ================================================================= */
+  function recomputeExam(e) { computeExamStats(e, state.scores[e.id] || {}); }
+  function computeExamStats(e, sc) {
+    var ids = Object.keys(sc), vals = ids.map(function (k) { return sc[k].score; });
+    ids.forEach(function (k) { sc[k].rank = 1 + vals.filter(function (v) { return v > sc[k].score; }).length; sc[k].total = ids.length; });
+    var p = vals.map(function (v) { return pctOf(v, e.max); }), b = [0, 0, 0, 0];
+    p.forEach(function (x) { b[x < 40 ? 0 : x < 60 ? 1 : x < 80 ? 2 : 3]++; });
+    e.stats = { avg: r1(mean(p)), best: p.length ? Math.max.apply(null, p) : null, n: p.length, buckets: b };
+  }
+  function recomputeSession(date) {
+    var s = state.sessions.find(function (x) { return x.date === date; }); if (!s) return;
+    var present = 0, marked = 0;
+    Object.keys(state.att).forEach(function (sid) { var r = state.att[sid][date]; if (r !== undefined) { marked++; if (r) present++; } });
+    s.presentCount = present; s.markedCount = marked;
+  }
+  function exams() { return state.exams.slice().sort(byDate); }
+  function sessionsSorted() { return state.sessions.slice().sort(byDate); }
+  function sessionPct(s) { return s.markedCount ? s.presentCount / s.markedCount * 100 : null; }
+  function studentRows(sid) {
+    return exams().filter(function (e) { return state.scores[e.id] && state.scores[e.id][sid]; }).map(function (e) {
+      var r = state.scores[e.id][sid];
+      return { exam: e, score: r.score, pct: pctOf(r.score, e.max), rank: r.rank, total: r.total };
+    });
+  }
+  function studentAtt(sid) {
+    var m = state.att[sid] || {};
+    var rows = Object.keys(m).sort().map(function (d) { return { date: d, on: !!m[d] }; });
+    var p = rows.filter(function (r) { return r.on; }).length;
+    return { rows: rows, present: p, total: rows.length, pct: rows.length ? p / rows.length * 100 : null };
+  }
+  function shortTitle(e) { return e.title.length > 18 ? e.title.slice(0, 17) + '…' : e.title; }
+
+  /* =================================================================
+     Страница: Прогресс / Журнал команды
+     ================================================================= */
+  var an = { tab: null, studentId: null };
+  function pageAnalytics() {
+    var cap = isCaptain();
+    var tabs = cap ? [['team', 'Команда'], ['student', 'По ученику']] : [['me', 'Мой прогресс'], ['team', 'Команда в среднем']];
+    if (!tabs.some(function (x) { return x[0] === an.tab; })) an.tab = tabs[0][0];
+    var head = pageHead(cap ? 'Журнал команды' : 'Мой прогресс', cap ? 'Посещаемость, баллы олимпиад и статусы тем всей сборной.' : 'Ваша посещаемость, баллы и статусы по темам. Другие участники ваши данные не видят.',
+      '<div class="seg" role="group" aria-label="Вид">' + tabs.map(function (x) { return '<button type="button" class="seg-btn" data-action="an-tab" data-id="' + x[0] + '" aria-pressed="' + (an.tab === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
+      (cap ? '<button type="button" class="btn btn-primary" data-action="enter-scores">' + ic('plus') + 'Внести баллы</button>' : ''));
+    var body;
+    if (!state.students.length && cap) body = emptyBox('users', 'В команде пока нет учеников', backend === 'firebase' ? 'Ученики появятся здесь после регистрации на сайте.' : 'Добавьте учеников в разделе «Команда».', backend === 'local' ? '<button type="button" class="btn btn-primary mt-4" data-action="go" data-route="team">' + ic('user-plus') + 'Добавить учеников</button>' : '');
+    else if (an.tab === 'team') body = teamView();
+    else if (cap) body = studentView(currentStudentId(), false);
+    else body = myStudentId() ? studentView(myStudentId(), true) : needMe();
+    return deadlineBanner() + head + '<div class="mt-6">' + body + '</div>';
+  }
+  function currentStudentId() {
+    var list = students();
+    if (!an.studentId || !studentById(an.studentId)) an.studentId = list.length ? list[0].id : null;
+    return an.studentId;
+  }
+  function studentView(sid, own) {
+    var s = studentById(sid), rows = studentRows(sid), att = studentAtt(sid);
+    var avg = mean(rows.map(function (r) { return r.pct; })), last = rows[rows.length - 1], prev = rows[rows.length - 2], delta = last && prev ? last.pct - prev.pct : null;
+    var pc = { none: 0, in_progress: 0, learned: 0, review: 0 }, allTopics = state.topics;
+    allTopics.forEach(function (t) { pc[statusOf(sid, t.id)]++; });
+    var review = allTopics.filter(function (t) { return statusOf(sid, t.id) === 'review'; });
+    var picker = own ? '' : '<div class="mb-5 max-w-xs"><label for="an-student" class="label">Ученик</label><select id="an-student" class="input" data-change="an-student">' +
+      students().map(function (x) { return '<option value="' + x.id + '"' + (x.id === sid ? ' selected' : '') + '>' + esc(x.name) + (x.grade ? ', ' + x.grade + ' класс' : '') + '</option>'; }).join('') + '</select></div>';
+    var strip = att.rows.map(function (r) { return '<span class="h-6 w-6 rounded ' + (r.on ? 'bg-moss' : 'bg-line') + '" title="' + fmtDate(r.date) + ': ' + (r.on ? 'присутствие' : 'пропуск') + '"></span>'; }).join('');
+    var hist = rows.slice().reverse().map(function (r) {
+      return '<tr class="border-t border-line"><td class="py-2.5 pr-3"><p class="m-0 font-medium">' + esc(r.exam.title) + '</p><p class="m-0 text-xs text-slate">' + fmtDate(r.exam.date) + '</p></td><td class="tnum py-2.5 pr-3">' + num(r.score) + ' / ' + num(r.exam.max) + '</td><td class="tnum py-2.5 pr-3">' + fmtPct(r.pct) + '</td><td class="tnum py-2.5">' + (r.rank ? r.rank + ' из ' + r.total : '—') + '</td></tr>';
+    }).join('');
+    var legend = [['learned', 'bg-moss'], ['in_progress', 'bg-sea'], ['review', 'bg-ochre'], ['none', 'bg-line']];
+    return picker + kpiGrid([
+      kpi('Средний результат', fmtPct(avg), rows.length + ' ' + plural(rows.length, 'олимпиада', 'олимпиады', 'олимпиад')),
+      kpi('Последняя олимпиада', last ? num(last.score) + ' / ' + num(last.exam.max) : '—', last && last.rank ? 'Место ' + last.rank + ' из ' + last.total : 'Нет результатов'),
+      kpi('Посещаемость', fmtPct(att.pct), att.present + ' из ' + att.total + ' ' + plural(att.total, 'занятия', 'занятий', 'занятий')),
+      kpi('Изучено тем', pc.learned + ' / ' + allTopics.length, pc.review + ' на повторение')
+    ]) +
+      '<section class="panel mt-4"><div class="flex flex-wrap items-center justify-between gap-2"><h2 class="panel-title">' + (own ? 'Мои результаты' : esc(s ? s.name : '')) + ' и среднее команды, % от максимума</h2>' + trendLine(delta) + '</div>' +
+      (state.exams.length ? '<div class="relative mt-4 h-64"><canvas id="ch-student" role="img" aria-label="Результаты по олимпиадам"></canvas></div>' : '<p class="m-0 mt-4 text-sm text-slate">Баллов пока нет.</p>') + '</section>' +
+      '<div class="mt-4 grid gap-4 lg:grid-cols-2"><section class="panel"><h2 class="panel-title">Посещаемость</h2>' +
+      (att.rows.length ? '<p class="m-0 mt-1 text-sm text-slate">Каждая клетка — одно занятие, от старых к новым.</p><div class="mt-4 flex flex-wrap gap-1.5">' + strip + '</div><div class="mt-4 flex gap-4 text-sm text-slate"><span class="flex items-center gap-2"><span class="h-3 w-3 rounded-sm bg-moss"></span>Присутствие</span><span class="flex items-center gap-2"><span class="h-3 w-3 rounded-sm bg-line"></span>Пропуск</span></div>'
+        : '<p class="m-0 mt-3 text-sm text-slate">Отметок пока нет.</p>') + '</section>' +
+      '<section class="panel"><h2 class="panel-title">Статусы по темам</h2><div class="mt-4 flex items-center gap-6"><div class="relative h-36 w-36 shrink-0"><canvas id="ch-topics" role="img" aria-label="Статусы тем"></canvas></div>' +
+      '<ul class="m-0 list-none space-y-2 p-0 text-sm">' + legend.map(function (x) { return '<li class="flex items-center gap-2"><span class="h-3 w-3 rounded-sm ' + x[1] + '"></span>' + STATUSES[x[0]] + '<span class="tnum ml-auto pl-4 font-semibold">' + pc[x[0]] + '</span></li>'; }).join('') + '</ul></div></section></div>' +
+      '<div class="mt-4 grid gap-4 lg:grid-cols-2"><section class="panel"><h2 class="panel-title">История олимпиад</h2>' +
+      (rows.length ? '<div class="mt-2 overflow-x-auto"><table class="w-full text-left text-sm"><thead class="text-slate"><tr><th class="py-2 pr-3 font-medium">Олимпиада</th><th class="py-2 pr-3 font-medium">Балл</th><th class="py-2 pr-3 font-medium">%</th><th class="py-2 font-medium">Место</th></tr></thead><tbody>' + hist + '</tbody></table></div>' : '<p class="m-0 mt-3 text-sm text-slate">Результатов пока нет.</p>') + '</section>' +
+      '<section class="panel"><h2 class="panel-title">Темы на повторение</h2>' +
+      (review.length ? '<ul class="m-0 -mx-2 mt-2 list-none p-0">' + review.map(function (t) { return '<li><button type="button" class="row-btn rounded-md" style="padding:.625rem .5rem" data-action="open-topic" data-id="' + t.id + '"><span class="min-w-0 flex-1 font-medium">' + esc(topicLabel(t.id)) + '</span>' + ic('chevron-right', 'h-4 w-4 text-slate') + '</button></li>'; }).join('') + '</ul>'
+        : '<p class="m-0 mt-3 text-sm text-slate">Тем со статусом «Повторить» нет.' + (own ? ' Статус ставится в карточке темы в «Силлабусе».' : '') + '</p>') + '</section></div>';
+  }
+  function teamView() {
+    var ex = exams(), last = ex[ex.length - 1], prev = ex[ex.length - 2];
+    var la = last && last.stats ? last.stats.avg : null, pa = prev && prev.stats ? prev.stats.avg : null, delta = la != null && pa != null ? la - pa : null;
+    var attAvg = mean(state.sessions.map(sessionPct));
+    var html = kpiGrid([
+      kpi('Среднее за последнюю', fmtPct(la), last ? esc(shortTitle(last)) + ', ' + fmtDate(last.date) : 'Нет данных'),
+      kpi('Изменение', fmtDelta(delta), 'к предыдущей олимпиаде', delta == null ? '' : delta >= 0 ? 'text-moss' : 'text-danger'),
+      kpi('Средняя посещаемость', fmtPct(attAvg), state.sessions.length + ' ' + plural(state.sessions.length, 'занятие', 'занятия', 'занятий')),
+      kpi('Олимпиад', String(ex.length), last && last.stats ? 'Писали последнюю: ' + last.stats.n : '—')
+    ]);
+    if (!ex.length && !state.sessions.length) return html + '<div class="mt-4">' + emptyBox('bar-chart-3', 'Данных пока нет', isCaptain() ? 'Внесите баллы или отметьте посещаемость, и здесь появятся графики.' : 'Графики появятся, когда капитан внесёт баллы и посещаемость.') + '</div>';
+    html += '<section class="panel mt-4"><div class="flex flex-wrap items-center justify-between gap-2"><h2 class="panel-title">Динамика команды, % от максимума</h2>' + trendLine(delta, 'к предыдущей') + '</div><div class="relative mt-4 h-64"><canvas id="ch-team" role="img" aria-label="Средний и лучший результат команды"></canvas></div></section>' +
+      '<div class="mt-4 grid gap-4 lg:grid-cols-2"><section class="panel"><h2 class="panel-title">Посещаемость по занятиям</h2><div class="relative mt-4 h-56"><canvas id="ch-att" role="img" aria-label="Процент присутствующих"></canvas></div></section>' +
+      '<section class="panel"><h2 class="panel-title">Распределение результатов' + (last ? ': ' + esc(shortTitle(last)) : '') + '</h2><div class="relative mt-4 h-56"><canvas id="ch-dist" role="img" aria-label="Число учеников по диапазонам"></canvas></div></section></div>';
+    if (!isCaptain()) return html + '<p class="m-0 mt-4 text-sm text-slate">Здесь только средние показатели команды. Личные баллы других участников видит только капитан.</p>';
+    var rows = students().map(function (s) {
+      var r = studentRows(s.id), l = r[r.length - 1], p = r[r.length - 2], learned = state.topics.filter(function (t) { return statusOf(s.id, t.id) === 'learned'; }).length;
+      return { s: s, avg: mean(r.map(function (x) { return x.pct; })), last: l ? l.pct : null, delta: l && p ? l.pct - p.pct : null, att: studentAtt(s.id).pct, learned: learned };
+    }).sort(function (a, b) { return (b.avg || 0) - (a.avg || 0); });
+    return html + '<section class="panel mt-4" style="padding-left:0;padding-right:0"><div class="flex items-baseline justify-between px-4 sm:px-5"><h2 class="panel-title">Журнал учеников</h2><p class="m-0 text-sm text-slate">По среднему результату</p></div>' +
+      '<div class="mt-3 overflow-x-auto"><table class="w-full min-w-[680px] text-left text-sm"><thead class="text-slate"><tr><th class="px-4 py-2 font-medium sm:px-5">Ученик</th><th class="py-2 pr-4 font-medium">Средний</th><th class="py-2 pr-4 font-medium">Последний</th><th class="py-2 pr-4 font-medium">Динамика</th><th class="py-2 pr-4 font-medium">Посещаемость</th><th class="py-2 pr-4 font-medium">Изучено тем</th></tr></thead><tbody>' +
+      rows.map(function (r) {
+        var dc = r.delta == null ? 'text-slate' : r.delta >= 0 ? 'text-moss' : 'text-danger', di = r.delta == null ? 'minus' : r.delta >= 0 ? 'trending-up' : 'trending-down';
+        return '<tr class="border-t border-line"><td class="px-4 py-2.5 sm:px-5"><button type="button" class="link-btn font-medium" style="text-decoration:none" data-action="an-open-student" data-id="' + r.s.id + '">' + esc(r.s.name) + '</button>' + (r.s.grade ? '<span class="block text-xs text-slate">' + r.s.grade + ' класс</span>' : '') + '</td>' +
+          '<td class="tnum py-2.5 pr-4">' + fmtPct(r.avg) + '</td><td class="tnum py-2.5 pr-4">' + fmtPct(r.last) + '</td><td class="py-2.5 pr-4"><span class="flex items-center gap-1 ' + dc + '">' + ic(di, 'h-3.5 w-3.5') + fmtDelta(r.delta) + '</span></td>' +
+          '<td class="tnum py-2.5 pr-4 ' + (r.att != null && r.att < 70 ? 'text-danger' : '') + '">' + fmtPct(r.att) + '</td><td class="tnum py-2.5 pr-4">' + r.learned + ' / ' + state.topics.length + '</td></tr>';
+      }).join('') + '</tbody></table></div></section>';
+  }
+
+  var sc = { id: 'new' };
+  function scoreForm() {
+    var list = exams().reverse(), e = sc.id === 'new' ? null : state.exams.find(function (x) { return x.id === sc.id; });
+    if (sc.id !== 'new' && !e) sc.id = 'new';
+    var cur = e ? (state.scores[e.id] || {}) : {};
+    return '<form data-form="scores" novalidate>' + modalHead('Баллы за олимпиаду', 'Пустое поле означает, что ученик не участвовал.') +
+      '<div class="mt-5"><label for="sc-o" class="label">Олимпиада</label><select id="sc-o" class="input" data-change="sc-exam"><option value="new"' + (!e ? ' selected' : '') + '>Новая олимпиада</option>' +
+      list.map(function (x) { return '<option value="' + x.id + '"' + (e && x.id === e.id ? ' selected' : '') + '>' + esc(x.title) + ', ' + fmtDate(x.date, true) + '</option>'; }).join('') + '</select></div>' +
+      (!e ? '<div class="mt-4 grid gap-4 sm:grid-cols-2"><div class="sm:col-span-2"><label for="sc-title" class="label">Название</label><input id="sc-title" name="etitle" class="input" placeholder="Пробная олимпиада №1"></div>' +
+        '<div><label for="sc-date" class="label">Дата</label><input id="sc-date" name="edate" type="date" class="input" value="' + todayISO() + '"></div>' +
+        '<div><label for="sc-level" class="label">Уровень</label><select id="sc-level" name="elevel" class="input">' + Object.keys(LEVELS).map(function (k) { return '<option value="' + k + '">' + LEVELS[k] + '</option>'; }).join('') + '</select></div>' +
+        '<div><label for="sc-max" class="label">Максимум баллов</label><input id="sc-max" name="emax" type="number" min="1" step="0.5" value="100" class="input"></div></div>'
+        : '<div class="mt-2 flex flex-wrap items-center justify-between gap-2"><p class="m-0 text-sm text-slate">' + LEVELS[e.level] + '. Максимум ' + num(e.max) + ' ' + plural(Math.round(e.max), 'балл', 'балла', 'баллов') + '.</p>' + deleteBtn('delete-exam', 'exam:' + e.id, 'data-id="' + e.id + '"', 'Удалить олимпиаду') + '</div>') +
+      '<fieldset class="m-0 mt-5 border-0 p-0"><legend class="label">Баллы учеников</legend><div class="divide-y divide-line rounded-lg border border-line bg-field">' +
+      students().map(function (s) {
+        var v = cur[s.id] ? cur[s.id].score : '';
+        return '<div class="flex items-center gap-3 px-3 py-2"><label for="sc-' + s.id + '" class="min-w-0 flex-1 truncate text-[15px]">' + esc(s.name) + '</label><input id="sc-' + s.id + '" name="s:' + s.id + '" type="number" inputmode="decimal" min="0" step="0.5" class="input tnum" style="width:6rem;padding-top:.375rem;padding-bottom:.375rem;text-align:right" value="' + v + '"></div>';
+      }).join('') + '</div></fieldset>' + modalFoot('Сохранить баллы') + '</form>';
+  }
+
+  /* ---------- Графики ---------- */
+  var charts = [];
+  function cssc(name, a) { var v = getComputedStyle(document.documentElement).getPropertyValue('--' + name).trim().split(/\s+/).join(','); return 'rgba(' + v + ',' + (a == null ? 1 : a) + ')'; }
+  function destroyCharts() { charts.forEach(function (c) { try { c.destroy(); } catch (e) {} }); charts = []; }
+  function mkChart(id, cfg) { var el = document.getElementById(id); if (el && window.Chart) charts.push(new Chart(el, cfg)); }
+  function pctAxis() { return { min: 0, max: 100, ticks: { stepSize: 25, callback: function (v) { return v + '%'; } } }; }
+  function lineCfg(labels, ds) {
+    return { type: 'line', data: { labels: labels, datasets: ds }, options: { maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, scales: { y: pctAxis(), x: { grid: { display: false } } },
+      plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 16 } }, tooltip: { callbacks: { label: function (c) { return c.dataset.label + ': ' + (c.parsed.y == null ? '—' : num(c.parsed.y) + '%'); } } } } } };
+  }
+  function lineDs(label, data, color, fill, dash) {
+    return { label: label, data: data, borderColor: cssc(color), backgroundColor: cssc(color, fill ? 0.12 : 1), fill: !!fill, tension: 0.3, pointRadius: 4, pointHoverRadius: 6, borderWidth: 2.5, spanGaps: true, borderDash: dash || [], pointBackgroundColor: cssc(color) };
+  }
+  function drawCharts() {
+    if (!window.Chart) return;
+    Chart.defaults.font.family = "'Golos Text', system-ui, sans-serif"; Chart.defaults.font.size = 12; Chart.defaults.color = cssc('slate'); Chart.defaults.borderColor = cssc('line', 0.8);
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) Chart.defaults.animation = false;
+    var ex = exams(), labels = ex.map(function (e) { return [shortTitle(e), fmtShort(e.date)]; }), avg = ex.map(function (e) { return e.stats ? e.stats.avg : null; });
+    var sid = isCaptain() ? currentStudentId() : myStudentId();
+    if ($('#ch-student')) {
+      var mine = ex.map(function (e) { var r = state.scores[e.id] && state.scores[e.id][sid]; return r ? pctOf(r.score, e.max) : null; });
+      mkChart('ch-student', lineCfg(labels, [lineDs(isCaptain() ? 'Ученик' : 'Мой результат', mine, 'sea', true), lineDs('Среднее команды', avg, 'ochre', false, [6, 4])]));
+    }
+    if ($('#ch-topics')) {
+      var c = { none: 0, in_progress: 0, learned: 0, review: 0 }; state.topics.forEach(function (t) { c[statusOf(sid, t.id)]++; });
+      mkChart('ch-topics', { type: 'doughnut', data: { labels: [STATUSES.learned, STATUSES.in_progress, STATUSES.review, STATUSES.none], datasets: [{ data: [c.learned, c.in_progress, c.review, c.none], backgroundColor: [cssc('moss'), cssc('sea'), cssc('ochre'), cssc('line')], borderColor: cssc('surface'), borderWidth: 2 }] },
+        options: { maintainAspectRatio: false, cutout: '66%', plugins: { legend: { display: false } } } });
+    }
+    if ($('#ch-team')) mkChart('ch-team', lineCfg(labels, [lineDs('Среднее команды', avg, 'sea', true), lineDs('Лучший результат', ex.map(function (e) { return e.stats ? e.stats.best : null; }), 'moss', false, [6, 4])]));
+    if ($('#ch-att')) {
+      var ss = sessionsSorted(), vals = ss.map(function (s) { return r1(sessionPct(s)); });
+      mkChart('ch-att', { type: 'bar', data: { labels: ss.map(function (s) { return fmtShort(s.date).slice(0, 5); }), datasets: [{ label: 'Присутствовали', data: vals, borderRadius: 3, backgroundColor: vals.map(function (v) { return v >= 80 ? cssc('moss') : v >= 60 ? cssc('ochre') : cssc('danger'); }) }] },
+        options: { maintainAspectRatio: false, scales: { y: pctAxis(), x: { grid: { display: false } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (x) { return 'Присутствовали: ' + num(x.parsed.y) + '%'; } } } } } });
+    }
+    if ($('#ch-dist')) {
+      var last = ex[ex.length - 1];
+      mkChart('ch-dist', { type: 'bar', data: { labels: ['до 40%', '40–59%', '60–79%', '80–100%'], datasets: [{ label: 'Учеников', data: last && last.stats ? last.stats.buckets : [0, 0, 0, 0], backgroundColor: cssc('sea', 0.85), borderRadius: 3 }] },
+        options: { maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { precision: 0 } }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } } });
+    }
+  }
+
+  /* =================================================================
+     Страница: Посещаемость
+     ================================================================= */
+  var att = { date: todayISO(), draft: null, draftDate: null };
+  function savedFor(date) { var out = null; Object.keys(state.att).forEach(function (sid) { if (state.att[sid][date] !== undefined) { out = out || []; if (state.att[sid][date]) out.push(sid); } }); return out; }
+  function draft() {
+    if (!att.draft || att.draftDate !== att.date) { att.draft = (savedFor(att.date) || []).slice(); att.draftDate = att.date; }
+    return att.draft;
+  }
+  function isDirty() {
+    var s = savedFor(att.date), d = draft();
+    if (!s) return d.length > 0;
+    return s.length !== d.length || d.some(function (id) { return s.indexOf(id) === -1; });
+  }
+  function pageAttendance() {
+    var st = students(), d = draft(), saved = savedFor(att.date), n = st.length;
+    if (!n) return pageHead('Посещаемость', '') + '<div class="mt-6">' + emptyBox('users', 'Учеников пока нет', backend === 'firebase' ? 'Ученики появятся после регистрации на сайте.' : 'Сначала добавьте учеников в разделе «Команда».') + '</div>';
+    var toggles = st.map(function (x) {
+      var on = d.indexOf(x.id) !== -1;
+      return '<li><button type="button" role="checkbox" aria-checked="' + on + '" data-action="att-toggle" data-id="' + x.id + '" class="flex w-full items-center gap-3 rounded-lg border px-3 py-3 text-left ' + (on ? 'border-moss bg-moss/10' : 'border-line bg-field hover:border-sea') + '" style="font:inherit;color:inherit;cursor:pointer">' +
+        '<span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 ' + (on ? 'border-moss bg-moss text-on-sea' : 'border-line') + '">' + (on ? ic('check', 'h-4 w-4') : '') + '</span>' +
+        '<span class="min-w-0 flex-1"><span class="block truncate font-medium">' + esc(x.name) + '</span><span class="block text-sm text-slate">' + (x.grade ? x.grade + ' класс, ' : '') + 'всего ' + fmtPct(studentAtt(x.id).pct) + '</span></span></button></li>';
+    }).join('');
+    var hist = sessionsSorted().reverse().map(function (s) {
+      var p = sessionPct(s);
+      return '<tr class="border-t border-line ' + (s.date === att.date ? 'bg-sea/5' : '') + '"><td class="px-4 py-2.5 sm:px-5">' + fmtDate(s.date) + '</td><td class="tnum py-2.5 pr-4">' + s.presentCount + ' из ' + s.markedCount + '</td><td class="tnum py-2.5 pr-4 ' + (p < 70 ? 'text-danger' : '') + '">' + fmtPct(p) + '</td>' +
+        '<td class="py-2.5 pr-4 text-right"><button type="button" class="btn btn-ghost btn-sm" data-action="att-open" data-date="' + s.date + '">Открыть</button></td></tr>';
+    }).join('');
+    return pageHead('Посещаемость', 'Выберите дату, отметьте присутствующих и сохраните. Каждый ученик видит только свою посещаемость.') +
+      '<section class="panel mt-6"><div class="flex flex-wrap items-end gap-4"><div class="w-full sm:w-56"><label for="att-date" class="label">Дата занятия</label><input id="att-date" type="date" class="input" value="' + att.date + '" data-change="att-date"></div>' +
+      '<p class="m-0 pb-2.5 text-sm ' + (saved ? 'text-slate' : 'text-sea') + '">' + (saved ? 'Отметки за эту дату уже есть. Сохранение перезапишет их.' : 'Новое занятие.') + (isDirty() ? ' <span class="font-medium text-ochre-ink">Есть несохранённые изменения.</span>' : '') + '</p></div>' +
+      '<div class="mt-5 flex flex-wrap items-center gap-2"><button type="button" class="btn btn-secondary btn-sm" data-action="att-all">' + ic('check-check', 'h-3.5 w-3.5') + 'Отметить всех</button><button type="button" class="btn btn-ghost btn-sm" data-action="att-none">Снять все отметки</button>' +
+      '<p class="m-0 ml-auto text-sm"><span class="font-display text-lg">' + d.length + '</span> из ' + n + ' присутствуют</p></div>' +
+      '<ul class="m-0 mt-4 grid list-none gap-2 p-0 sm:grid-cols-2 xl:grid-cols-3">' + toggles + '</ul>' +
+      '<div class="mt-5 flex flex-wrap justify-end gap-2">' + (saved ? deleteBtn('att-delete', 'att:' + att.date, '', 'Удалить занятие') : '') + '<button type="button" class="btn btn-primary" data-action="att-save">' + ic('check') + 'Сохранить посещаемость</button></div></section>' +
+      '<section class="panel mt-6" style="padding-left:0;padding-right:0"><h2 class="panel-title px-4 sm:px-5">История занятий</h2>' +
+      (hist ? '<div class="mt-3 overflow-x-auto"><table class="w-full min-w-[420px] text-left text-sm"><thead class="text-slate"><tr><th class="px-4 py-2 font-medium sm:px-5">Дата</th><th class="py-2 pr-4 font-medium">Присутствовали</th><th class="py-2 pr-4 font-medium">%</th><th class="py-2 pr-4"><span class="sr-only">Действия</span></th></tr></thead><tbody>' + hist + '</tbody></table></div>' : '<p class="m-0 mt-3 px-4 text-sm text-slate sm:px-5">Занятий пока нет.</p>') + '</section>';
+  }
+
+  /* =================================================================
+     Страница: Форум
+     ================================================================= */
+  var qa = { q: '', topic: 'all', status: 'all' };
+  function answersOf(qid) { return state.answers.filter(function (a) { return a.questionId === qid; }); }
+  function pageQA() {
+    var chips = [['all', 'Все'], ['open', 'Без ответа'], ['resolved', 'Решённые']];
+    return pageHead('Вопросы и ответы', 'Спрашивайте о сложных темах. Отвечать может любой участник, автор вопроса отмечает лучший ответ.', '<button type="button" class="btn btn-primary" data-action="ask-question">' + ic('plus') + 'Задать вопрос</button>') +
+      '<div class="mt-6 grid gap-3 sm:grid-cols-[1fr_300px]"><div>' + searchBox('qa-q', qa.q, 'Поиск по вопросам', 'qa-q') + '</div><div><label for="qa-topic" class="sr-only">Тема</label>' + topicSelect('qa-topic', 'qa-topic', qa.topic === 'all' ? '' : qa.topic, 'Все темы', 'data-change="qa-topic"') + '</div></div>' +
+      '<div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Статус">' + chips.map(function (c) { return '<button type="button" class="chip" data-action="qa-status" data-id="' + c[0] + '" aria-pressed="' + (qa.status === c[0]) + '">' + c[1] + '</button>'; }).join('') + '</div><div id="qa-list" class="mt-5">' + qaList() + '</div>';
+  }
+  function qaList() {
+    var q = norm(qa.q), fam = qa.topic === 'all' ? null : topicFamily(qa.topic);
+    var list = state.questions.filter(function (x) {
+      var ans = answersOf(x.id);
+      if (fam && fam.indexOf(x.topicId) === -1) return false;
+      if (qa.status === 'open' && ans.length) return false;
+      if (qa.status === 'resolved' && !x.resolved) return false;
+      return !q || norm(x.title + ' ' + x.body + ' ' + ans.map(function (a) { return a.body; }).join(' ')).indexOf(q) !== -1;
+    }).sort(function (a, b) { return b.ts - a.ts; });
+    if (!list.length) return emptyBox('message-circle', state.questions.length ? 'Вопросов не найдено' : 'Вопросов пока нет', state.questions.length ? 'Измените фильтры.' : 'Задайте первый вопрос по сложной теме.',
+      '<div class="mt-4 flex flex-wrap justify-center gap-2">' + (state.questions.length ? '<button type="button" class="btn btn-secondary" data-action="qa-reset">Сбросить фильтры</button>' : '') + '<button type="button" class="btn btn-primary" data-action="ask-question">Задать вопрос</button></div>');
+    return '<ul class="m-0 list-none divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface p-0">' + list.map(function (x) {
+      var n = answersOf(x.id).length, st = x.resolved ? '<span class="badge b-moss">' + ic('check', 'h-3 w-3') + 'Решён</span>' : n ? '<span class="badge b-sea">Обсуждается</span>' : '<span class="badge b-ochre">Ждёт ответа</span>';
+      return '<li><button type="button" class="row-btn" style="align-items:flex-start;padding-top:1rem;padding-bottom:1rem" data-action="open-question" data-id="' + x.id + '"><span class="min-w-0 flex-1"><span class="block font-medium">' + esc(x.title) + '</span><span class="mt-1 block text-sm text-slate">' +
+        (x.topicId && topicById(x.topicId) ? esc(topicLabel(x.topicId)) + '. ' : '') + esc(personName(x.authorId)) + ', ' + fmtDate(x.createdAt) + '</span></span><span class="flex shrink-0 flex-col items-end gap-1.5">' + st + '<span class="flex items-center gap-1 text-sm text-slate">' + ic('message-circle', 'h-3.5 w-3.5') + n + '</span></span></button></li>';
+    }).join('') + '</ul>';
+  }
+  function findQ(id) { return state.questions.find(function (x) { return x.id === id; }); }
+  function questionModal(id) {
+    var q = findQ(id); if (!q) return modalHead('Вопрос удалён', '');
+    var me = myId(), canManage = isCaptain() || q.authorId === me;
+    var answers = answersOf(q.id).sort(function (a, b) { return ((b.id === q.acceptedId) - (a.id === q.acceptedId)) || (a.ts - b.ts); });
+    return modalHead(esc(q.title), '', q.topicId && topicById(q.topicId) ? esc(topicLabel(q.topicId)) : 'Без темы') +
+      '<p class="m-0 mt-2 text-sm text-slate">' + esc(personName(q.authorId)) + ', ' + fmtDate(q.createdAt) + '</p><p class="m-0 mt-4 whitespace-pre-line leading-relaxed">' + esc(q.body) + '</p>' +
+      (canManage ? '<div class="mt-4 flex flex-wrap gap-2"><button type="button" class="btn btn-secondary btn-sm" data-action="toggle-resolved" data-id="' + q.id + '">' + (q.resolved ? ic('rotate-ccw', 'h-3.5 w-3.5') + 'Открыть снова' : ic('check', 'h-3.5 w-3.5') + 'Отметить решённым') + '</button>' + deleteBtn('delete-question', 'q:' + q.id, 'data-id="' + q.id + '"', 'Удалить вопрос') + '</div>' : '') +
+      '<section class="mt-6"><h3 class="panel-title">' + (answers.length ? 'Ответы (' + answers.length + ')' : 'Ответов пока нет') + '</h3><div class="mt-3 space-y-3">' + answers.map(function (a) {
+        var acc = a.id === q.acceptedId, canDel = isCaptain() || a.authorId === me;
+        return '<article class="rounded-lg border p-4 ' + (acc ? 'border-moss bg-moss/5' : 'border-line bg-field') + '"><div class="flex flex-wrap items-center gap-2"><p class="m-0 font-medium">' + esc(personName(a.authorId)) + '</p>' + captainBadge(a.authorId) +
+          (acc ? '<span class="badge b-moss">' + ic('award', 'h-3 w-3') + 'Лучший ответ</span>' : '') + '<p class="m-0 ml-auto text-sm text-slate">' + fmtDate(a.createdAt) + '</p></div><p class="m-0 mt-2 whitespace-pre-line leading-relaxed">' + esc(a.body) + '</p>' +
+          ((canManage || canDel) ? '<div class="mt-3 flex flex-wrap gap-2">' + (canManage ? '<button type="button" class="btn btn-ghost btn-sm" data-action="accept-answer" data-q="' + q.id + '" data-a="' + a.id + '">' + (acc ? 'Снять отметку' : ic('award', 'h-3.5 w-3.5') + 'Лучший ответ') + '</button>' : '') +
+            (canDel ? deleteBtn('delete-answer', 'a:' + a.id, 'data-a="' + a.id + '"') : '') + '</div>' : '') + '</article>';
+      }).join('') + '</div></section>' +
+      '<form data-form="answer" data-q="' + q.id + '" class="mt-5" novalidate><label for="ans-body" class="label">Ваш ответ</label><textarea id="ans-body" name="body" rows="3" class="input" placeholder="Объясните своими словами или дайте ссылку на материал"></textarea>' + formError() +
+      '<div class="mt-3 flex justify-end"><button type="submit" class="btn btn-primary">' + ic('send', 'h-3.5 w-3.5') + 'Ответить</button></div></form>';
+  }
+  function askForm(topicId) {
+    return function () {
+      return '<form data-form="ask" novalidate>' + modalHead('Задать вопрос', 'Чем конкретнее вопрос, тем быстрее найдётся ответ.') + '<div class="mt-5 space-y-4"><div><label for="qf-topic" class="label">Тема</label>' + topicSelect('qf-topic', 'topic', topicId, 'Без темы') + '</div>' +
+        '<div><label for="qf-title" class="label">Вопрос</label><input id="qf-title" name="title" class="input" placeholder="Например, как считать поясное время через два пояса?" autofocus></div>' +
+        '<div><label for="qf-body" class="label">Подробности</label><textarea id="qf-body" name="body" rows="4" class="input" placeholder="Что уже пробовали и что именно непонятно"></textarea></div></div>' + modalFoot('Опубликовать вопрос') + '</form>';
+    };
+  }
+
+  /* =================================================================
+     Страница: Новости и дедлайны
+     ================================================================= */
+  var dl = { type: 'all', showPast: false };
+  function pageNews() {
+    var cap = isCaptain(), t = todayISO();
+    var feed = state.news.slice().sort(function (a, b) { return ((b.pinned ? 1 : 0) - (a.pinned ? 1 : 0)) || (b.ts - a.ts); });
+    var all = state.deadlines.filter(function (d) { return dl.type === 'all' || d.type === dl.type; });
+    var upcoming = all.filter(function (d) { return d.date >= t; }).sort(byDate), past = all.filter(function (d) { return d.date < t; }).sort(byDate).reverse();
+    var next = nextDeadline();
+    function dlItem(d, isPast) {
+      var ty = DL_TYPES[d.type] || DL_TYPES.important, left = daysUntil(d.date), dt = toDate(d.date);
+      return '<li class="flex gap-3 py-3"><div class="w-12 shrink-0 rounded-md border border-line bg-paper py-1.5 text-center"><p class="m-0 font-display text-lg leading-none">' + dt.getDate() + '</p><p class="m-0 mt-1 text-xs text-slate">' + dt.toLocaleDateString('ru-RU', { month: 'short' }) + '</p></div>' +
+        '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><span class="badge ' + ty.badge + '">' + ty.label + '</span></div><p class="m-0 mt-1 font-medium">' + esc(d.title) + '</p>' +
+        (d.description ? '<p class="m-0 mt-0.5 text-sm">' + esc(d.description) + '</p>' : '') +
+        '<p class="m-0 mt-0.5 text-sm ' + (!isPast && left <= 7 ? 'font-medium text-ochre-ink' : 'text-slate') + '">' + esc(countdownText(d.date)) + '</p>' +
+        (cap ? '<div class="mt-1.5">' + deleteBtn('delete-deadline', 'dl:' + d.id, 'data-id="' + d.id + '"') + '</div>' : '') + '</div></li>';
+    }
+    var hero = next ? (function () {
+      var ty = DL_TYPES[next.type] || DL_TYPES.important, left = daysUntil(next.date);
+      return '<section class="relative mt-6 overflow-hidden rounded-lg bg-sea-deep p-5 text-on-deep sm:p-6"><svg class="contours absolute inset-0 h-full w-full text-on-deep" style="opacity:.18" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#contours"/></svg>' +
+        '<div class="relative flex flex-wrap items-center gap-5"><div class="text-center"><p class="m-0 font-display text-5xl leading-none">' + left + '</p><p class="m-0 mt-2 text-sm opacity-80">' + plural(left, 'день', 'дня', 'дней') + '</p></div>' +
+        '<div class="min-w-0 flex-1"><span class="badge ' + ty.badge + '" style="background:rgb(255 255 255 / .15);color:inherit">' + ty.label + '</span><p class="m-0 mt-2 font-display text-lg leading-snug sm:text-xl">' + esc(countdownText(next.date, next.title)) + '</p><p class="m-0 mt-1 text-sm opacity-80">' + fmtDate(next.date, true) + '</p></div></div></section>';
+    })() : '';
+    var chips = [['all', 'Все']].concat(Object.keys(DL_TYPES).map(function (k) { return [k, DL_TYPES[k].label]; }));
+    return pageHead('Новости и дедлайны', 'Объявления капитана и календарь олимпиад, экзаменов и заданий с обратным отсчётом.') + hero +
+      '<div class="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]"><section><div class="flex items-center justify-between gap-3"><h2 class="text-lg">Объявления</h2>' + (cap ? '<button type="button" class="btn btn-primary" data-action="new-news">' + ic('plus') + 'Новое объявление</button>' : '') + '</div>' +
+      (feed.length ? '<div class="mt-4 space-y-3">' + feed.map(function (a) {
+        return '<article class="panel ' + (a.pinned ? 'border-ochre/70' : '') + '">' + (a.pinned ? '<p class="m-0 flex items-center gap-1.5 text-sm font-medium text-ochre-ink">' + ic('pin', 'h-3.5 w-3.5') + 'Закреплено</p>' : '') +
+          '<h3 class="mt-1 text-[17px] leading-snug">' + esc(a.title) + '</h3>' + (a.body ? '<p class="m-0 mt-2 max-w-prose whitespace-pre-line leading-relaxed">' + esc(a.body) + '</p>' : '') +
+          '<p class="m-0 mt-3 text-sm text-slate">' + esc(personName(a.authorId)) + ', ' + fmtDate(a.createdAt) + '</p>' +
+          (cap ? '<div class="mt-3 flex flex-wrap gap-2"><button type="button" class="btn btn-ghost btn-sm" data-action="toggle-pin" data-id="' + a.id + '">' + ic('pin', 'h-3.5 w-3.5') + (a.pinned ? 'Открепить' : 'Закрепить') + '</button>' + deleteBtn('delete-news', 'n:' + a.id, 'data-id="' + a.id + '"') + '</div>' : '') + '</article>';
+      }).join('') + '</div>' : '<div class="mt-4">' + emptyBox('megaphone', 'Объявлений пока нет', cap ? 'Опубликуйте первое объявление для команды.' : 'Здесь появятся новости от капитана.') + '</div>') + '</section>' +
+      '<section><div class="flex items-center justify-between gap-3"><h2 class="text-lg">Дедлайны и даты</h2>' + (cap ? '<button type="button" class="btn btn-secondary btn-sm" data-action="new-deadline">' + ic('calendar-plus', 'h-3.5 w-3.5') + 'Добавить</button>' : '') + '</div>' +
+      '<div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Тип">' + chips.map(function (c) { return '<button type="button" class="chip" data-action="dl-type" data-id="' + c[0] + '" aria-pressed="' + (dl.type === c[0]) + '">' + c[1] + '</button>'; }).join('') + '</div>' +
+      '<div class="panel mt-3" style="padding-top:.25rem;padding-bottom:.25rem">' + (upcoming.length ? '<ul class="m-0 list-none divide-y divide-line p-0">' + upcoming.map(function (d) { return dlItem(d, false); }).join('') + '</ul>' : '<p class="m-0 py-4 text-sm text-slate">Ближайших дат нет.</p>') + '</div>' +
+      (past.length ? '<details class="mt-3"><summary class="cursor-pointer text-sm text-slate">Прошедшие (' + past.length + ')</summary><div class="panel mt-2" style="padding-top:.25rem;padding-bottom:.25rem"><ul class="m-0 list-none divide-y divide-line p-0">' + past.map(function (d) { return dlItem(d, true); }).join('') + '</ul></div></details>' : '') + '</section></div>';
+  }
+  function newsForm() {
+    return '<form data-form="news" novalidate>' + modalHead('Новое объявление', 'Объявление увидят все участники.') + '<div class="mt-5 space-y-4"><div><label for="nf-title" class="label">Заголовок</label><input id="nf-title" name="title" class="input" autofocus></div>' +
+      '<div><label for="nf-body" class="label">Текст</label><textarea id="nf-body" name="body" rows="5" class="input"></textarea></div><label class="flex items-center gap-2 text-[15px]"><input type="checkbox" name="pinned" class="h-4 w-4">Закрепить вверху ленты</label></div>' + modalFoot('Опубликовать') + '</form>';
+  }
+  function deadlineForm() {
+    return '<form data-form="deadline" novalidate>' + modalHead('Новый дедлайн', 'Дата появится в календаре с обратным отсчётом.') + '<div class="mt-5 space-y-4"><div><label for="df-title" class="label">Название</label><input id="df-title" name="title" class="input" placeholder="Республиканская олимпиада" autofocus></div>' +
+      '<div class="grid gap-4 sm:grid-cols-2"><div><label for="df-type" class="label">Тип</label><select id="df-type" name="type" class="input">' + Object.keys(DL_TYPES).map(function (k) { return '<option value="' + k + '">' + DL_TYPES[k].label + '</option>'; }).join('') + '</select></div>' +
+      '<div><label for="df-date" class="label">Дата</label><input id="df-date" name="date" type="date" class="input" value="' + todayISO() + '"></div></div>' +
+      '<div><label for="df-desc" class="label">Описание (необязательно)</label><textarea id="df-desc" name="description" rows="2" class="input" placeholder="Например, что сдать или где проходит"></textarea></div></div>' + modalFoot('Добавить') + '</form>';
+  }
+
+  /* =================================================================
+     Страница: Команда
+     ================================================================= */
+  function pageTeam() {
+    var list = backend === 'firebase' ? fb.users.slice().sort(function (a, b) { return (a.role === 'captain' ? 0 : 1) - (b.role === 'captain' ? 0 : 1) || String(a.name).localeCompare(String(b.name), 'ru'); }) : students();
+    var intro = backend === 'firebase'
+      ? '<section class="panel mt-6 text-sm"><p class="m-0 font-medium">Как добавить ученика</p><p class="m-0 mt-1 text-slate">Отправьте ученику ссылку на сайт: он нажимает «Регистрация», вводит имя, класс, email и пароль и автоматически получает роль «Ученик». Сделать участника капитаном можно здесь.</p></section>'
+      : '<form data-form="student-add" class="panel mt-6" novalidate><h2 class="panel-title">Добавить ученика</h2><div class="mt-4 grid gap-3 sm:grid-cols-[1fr_120px_auto] sm:items-end"><div><label for="sa-name" class="label">Имя и фамилия</label><input id="sa-name" name="name" class="input"></div>' +
+        '<div><label for="sa-grade" class="label">Класс</label><input id="sa-grade" name="grade" type="number" min="1" max="12" class="input"></div><button type="submit" class="btn btn-primary">' + ic('user-plus') + 'Добавить</button></div>' + formError() + '</form>';
+    return pageHead('Команда', 'Участники сборной.') + intro +
+      (list.length ? '<ul class="m-0 mt-4 list-none divide-y divide-line rounded-lg border border-line bg-surface p-0">' + list.map(function (s) {
+        var isCap = s.role === 'captain';
+        return '<li class="flex flex-wrap items-center gap-3 px-4 py-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea/15 text-sm font-semibold text-sea">' + esc(initials(s.name)) + '</span>' +
+          '<div class="min-w-0 flex-1"><p class="m-0 truncate font-medium">' + esc(s.name) + (backend === 'firebase' && s.id === fb.user.uid ? ' <span class="text-sm font-normal text-slate">(вы)</span>' : '') + '</p><p class="m-0 truncate text-sm text-slate">' + (s.email ? esc(s.email) + ', ' : '') + (s.grade ? s.grade + ' класс' : '') + (isCap ? '' : (s.grade ? ', ' : '') + 'посещаемость ' + fmtPct(studentAtt(s.id).pct)) + '</p></div>' +
+          (isCap ? '<span class="badge b-sea">Капитан</span>' : '') +
+          '<button type="button" class="btn btn-ghost btn-sm" data-action="edit-student" data-id="' + s.id + '">' + ic('pencil', 'h-3.5 w-3.5') + '<span class="hidden sm:inline">Изменить</span></button>' +
+          (backend === 'local' ? deleteBtn('delete-student', 'st:' + s.id, 'data-id="' + s.id + '"') : '') + '</li>';
+      }).join('') + '</ul>' : '<div class="mt-4">' + emptyBox('users', 'Участников пока нет', backend === 'firebase' ? 'Они появятся после регистрации.' : 'Добавьте первого ученика формой выше.') + '</div>');
+  }
+  function studentForm(s) {
+    return function () {
+      var roleField = backend === 'firebase' && s.id !== fb.user.uid ? '<div class="sm:col-span-2"><label for="se-role" class="label">Роль</label><select id="se-role" name="role" class="input"><option value="student"' + (s.role !== 'captain' ? ' selected' : '') + '>Ученик</option><option value="captain"' + (s.role === 'captain' ? ' selected' : '') + '>Капитан (учитель)</option></select></div>' : '';
+      return '<form data-form="student-edit" data-id="' + s.id + '" novalidate>' + modalHead(s.role === 'captain' ? 'Капитан' : 'Ученик', s.email ? esc(s.email) : '') +
+        '<div class="mt-5 grid gap-4 sm:grid-cols-[1fr_120px]"><div><label for="se-name" class="label">Имя и фамилия</label><input id="se-name" name="name" class="input" value="' + esc(s.name) + '" autofocus></div>' +
+        '<div><label for="se-grade" class="label">Класс</label><input id="se-grade" name="grade" type="number" min="1" max="12" class="input" value="' + (s.grade || '') + '"></div>' + roleField + '</div>' + modalFoot('Сохранить') + '</form>';
+    };
+  }
+
+  /* =================================================================
+     Страница: Настройки и экспорт
+     ================================================================= */
+  function pageSettings() {
+    var nFiles = state.materials.filter(function (m) { return m.fileId; }).length, cfg = fbConfig || {};
+    var fbStatus = backend === 'firebase' ? '<p class="m-0 mt-2 text-sm text-moss">Подключено: проект ' + esc(cfg.projectId) + '. Данные хранятся в Firestore.</p>'
+      : fbConfig ? '<p class="m-0 mt-2 text-sm text-ochre-ink">Ключи сохранены' + (inClaude ? '. В окне Claude подключение к Firebase заблокировано правилами безопасности, поэтому здесь сайт работает локально. Firebase включится на опубликованном сайте.' : '.') + '</p>'
+      : '<p class="m-0 mt-2 text-sm text-slate">Ключи не введены: сайт работает в локальном режиме, данные хранятся в этом браузере.</p>';
+    return pageHead('Настройки и экспорт', 'Подключение Firebase, публикация сайта и резервные копии.') +
+      '<div class="mt-6 grid gap-4 lg:grid-cols-2">' +
+      '<section class="panel lg:col-span-2"><h2 class="panel-title">Экспорт сайта для GitHub Pages</h2><p class="m-0 mt-2 text-sm text-slate">Скачивает один файл index.html. В него попадают ключи Firebase' + (!fbConfig ? ', а пока Firebase не подключён, ещё и все данные: ученики, баллы, посещаемость, форум, новости. Файлы с компьютера (' + nFiles + ') встраиваются, если вместе они не больше 20 MB.' : '. Сами данные остаются в Firestore и в файл не попадают.') + '</p>' +
+      '<div class="mt-4"><button type="button" class="btn btn-primary" data-action="export-site">' + ic('download') + 'Скачать index.html</button></div>' +
+      '<ol class="m-0 mt-4 space-y-1 pl-5 text-sm text-slate"><li>Создайте репозиторий на github.com и загрузите index.html (Add file → Upload files).</li><li>Settings → Pages → Branch: main → Save. Сайт откроется по адресу имя.github.io/репозиторий.</li>' +
+      '<li>С Firebase: в консоли Firebase добавьте адрес имя.github.io в Authentication → Settings → Authorized domains.</li></ol></section>' +
+      '<form data-form="firebase" class="panel lg:col-span-2" novalidate><h2 class="panel-title">Подключение Firebase</h2>' + fbStatus +
+      '<div class="mt-4 grid gap-4 sm:grid-cols-3"><div><label for="fb-key" class="label">apiKey</label><input id="fb-key" name="apiKey" class="input" value="' + esc(cfg.apiKey || '') + '" spellcheck="false" autocomplete="off"></div>' +
+      '<div><label for="fb-domain" class="label">authDomain</label><input id="fb-domain" name="authDomain" class="input" value="' + esc(cfg.authDomain || '') + '" placeholder="проект.firebaseapp.com" spellcheck="false"></div>' +
+      '<div><label for="fb-project" class="label">projectId</label><input id="fb-project" name="projectId" class="input" value="' + esc(cfg.projectId || '') + '" spellcheck="false"></div></div>' +
+      formError() + '<div class="mt-4 flex flex-wrap justify-end gap-2">' + (fbConfig ? '<button type="button" class="btn btn-ghost" data-action="fb-disconnect">Отключить Firebase</button>' : '') + '<button type="submit" class="btn btn-primary">Сохранить ключи</button></div>' +
+      '<details class="mt-4"><summary class="cursor-pointer text-sm font-medium">Как настроить Firebase за 10 минут</summary><ol class="m-0 mt-3 space-y-1.5 pl-5 text-sm text-slate">' +
+      '<li>console.firebase.google.com → Add project. Тариф Spark бесплатный.</li><li>Build → Authentication → Get started → Sign-in method → Email/Password → Enable.</li>' +
+      '<li>Build → Firestore Database → Create database → Production mode.</li><li>Firestore → Rules: вставьте правила ниже → Publish.</li>' +
+      '<li>Project settings → Your apps → значок &lt;/&gt; → скопируйте apiKey, authDomain, projectId сюда.</li>' +
+      '<li>Экспортируйте сайт, опубликуйте его и зарегистрируйтесь первым.</li><li>Firestore → Data → users → ваш документ → поле role поменяйте на captain. После этого при входе силлабус и учебники загрузятся в базу сами.</li></ol>' +
+      '<div class="mt-3 flex items-center justify-between gap-2"><p class="m-0 text-sm font-medium">Правила Firestore</p><button type="button" class="btn btn-secondary btn-sm" data-action="copy-rules">' + ic('copy', 'h-3.5 w-3.5') + 'Скопировать</button></div>' +
+      '<pre class="m-0 mt-2 max-h-64 overflow-auto rounded-md border border-line bg-paper p-3 text-xs leading-relaxed">' + esc(FIRESTORE_RULES) + '</pre></details></form>' +
+      '<form data-form="settings" class="panel" novalidate><h2 class="panel-title">Основное</h2><div class="mt-4 space-y-4"><div><label for="set-team" class="label">Название сборной</label><input id="set-team" name="teamName" class="input" value="' + esc(state.settings.teamName) + '"></div>' +
+      (backend === 'local' ? '<div><label for="set-cap" class="label">Имя капитана или учителя</label><input id="set-cap" name="captainName" class="input" value="' + esc(state.settings.captainName) + '"></div>' : '') + '</div>' +
+      formError() + '<div class="mt-4 flex justify-end"><button type="submit" class="btn btn-primary">Сохранить</button></div></form>' +
+      (backend === 'local' ? '<form data-form="pin" class="panel" novalidate><h2 class="panel-title">PIN режима капитана</h2><p class="m-0 mt-2 text-sm text-slate">' + (state.settings.pinHash ? 'PIN установлен.' : 'PIN не установлен: любой может включить режим капитана.') + ' Это защита от случайных правок. Настоящие роли даёт только Firebase.</p>' +
+        '<div class="mt-4"><label for="pin-new" class="label">' + (state.settings.pinHash ? 'Новый PIN' : 'PIN') + ' (4–12 цифр)</label><input id="pin-new" name="pin" type="password" inputmode="numeric" autocomplete="new-password" class="input"></div>' + formError() +
+        '<div class="mt-4 flex flex-wrap justify-end gap-2">' + (state.settings.pinHash ? '<button type="button" class="btn btn-ghost" data-action="pin-clear">Убрать PIN</button>' : '') + '<button type="submit" class="btn btn-primary">Сохранить PIN</button></div></form>' : '') +
+      (backend === 'local' ? '<section class="panel"><h2 class="panel-title">Резервная копия</h2><p class="m-0 mt-2 text-sm text-slate">Данные локального режима живут в этом браузере. Сохраняйте копию, чтобы не потерять их. Файлы с компьютера в копию не входят.</p>' +
+        '<div class="mt-4 flex flex-wrap gap-2"><button type="button" class="btn btn-secondary" data-action="backup">' + ic('download') + 'Скачать копию (.json)</button><label class="btn btn-secondary" style="cursor:pointer">' + ic('upload') + 'Восстановить<input type="file" accept=".json,application/json" class="sr-only" data-change="restore"></label></div></section>' +
+        '<section class="panel"><h2 class="panel-title">Сброс</h2><p class="m-0 mt-2 text-sm text-slate">Удаляет учеников, баллы, посещаемость, статусы, форум, новости, дедлайны и добавленные материалы.</p><div class="mt-4">' + deleteBtn('reset-all', 'reset', '', 'Сбросить все данные') + '</div></section>' : '') +
+      '</div>';
+  }
+  async function hashPin(p) {
+    var s = 'geo-olymp:' + p;
+    if (window.crypto && crypto.subtle && window.TextEncoder) { var b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }
+    var h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return 'djb2:' + h;
+  }
+  function pinPrompt() {
+    return '<form data-form="unlock" novalidate>' + modalHead('Режим капитана', 'Введите PIN, чтобы включить редактирование.') + '<div class="mt-5"><label for="pin-in" class="label">PIN</label><input id="pin-in" name="pin" type="password" inputmode="numeric" autocomplete="off" class="input" autofocus></div>' + modalFoot('Войти') + '</form>';
+  }
+
+  /* ---------- Экспорт ---------- */
+  function buildHtml(seed) {
+    var S = '<' + '/script>';
+    var json = JSON.stringify(seed).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+    var title = esc((seed.state && seed.state.settings.teamName) || state.settings.teamName || 'Сборная по географии');
+    var iconEl = $('link[rel="icon"]'), icon = iconEl ? iconEl.getAttribute('href') : '';
+    return '<!DOCTYPE html>\n<html lang="ru">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<title>' + title + '</title>\n' +
+      (icon ? '<link rel="icon" href="' + esc(icon) + '">\n' : '') + HEAD_EXTRA.join('\n') + '\n<script src="' + SCRIPTS.tailwind + '">' + S + '\n<script id="tw-config">' + document.getElementById('tw-config').textContent + S + '\n' +
+      '<script src="' + SCRIPTS.chart + '">' + S + '\n<script src="' + SCRIPTS.lucide + '">' + S + '\n<style id="app-css">' + document.getElementById('app-css').textContent + '</style>\n</head>\n<body>\n' +
+      '<div id="app"><p style="padding:2rem;font-family:sans-serif;color:#56666C">Загрузка…</p></div>\n<script type="application/json" id="seed-data">' + json + S + '\n<script id="app-script">' + document.getElementById('app-script').textContent + S + '\n</body>\n</html>\n';
+  }
+  async function exportSite(btn) {
+    btn.disabled = true; var label = btn.innerHTML; btn.textContent = 'Подготовка…';
+    try {
+      var seed = { state: null, files: {}, firebaseConfig: fbConfig || null }, skipped = [];
+      if (backend === 'local' && !fbConfig) {
+        var total = 0, withFiles = state.materials.filter(function (m) { return m.fileId; }).sort(function (a, b) { return (a.fileSize || 0) - (b.fileSize || 0); });
+        for (var i = 0; i < withFiles.length; i++) {
+          var m = withFiles[i], b = await getFileBlob(m.fileId);
+          if (!b || total + b.size > EXPORT_CAP) { skipped.push(m.title); continue; }
+          seed.files[m.fileId] = await blobToDataUrl(b); total += b.size;
+        }
+        var st = clone(state); st.exportedAt = new Date().toISOString(); delete st.baseExport;
+        st.materials.forEach(function (x) { if (x.fileId && !seed.files[x.fileId]) { x.fileId = null; x.fileName = null; x.fileSize = null; x.fileType = null; } });
+        seed.state = st;
+      }
+      var ok = await saveFile('index.html', new Blob([buildHtml(seed)], { type: 'text/html' }));
+      if (ok) toast(skipped.length ? 'Сайт скачан. Не вошли файлы: ' + skipped.join(', ') + '. Добавьте их ссылками.' : 'Сайт скачан: index.html готов для GitHub Pages.', !!skipped.length);
+    } finally { btn.disabled = false; btn.innerHTML = label; icons(); }
+  }
+
+  /* =================================================================
+     Экран входа (режим Firebase)
+     ================================================================= */
+  var authTab = 'login', authMsg = null;
+  function renderAuth(message) {
+    message = message || authMsg; authMsg = null;
+    $('#app').innerHTML = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="contours" viewBox="0 0 800 800">' + CONTOURS + '</symbol></defs></svg>' +
+      '<div class="min-h-screen lg:grid lg:grid-cols-[1.1fr_1fr]"><div class="relative flex min-h-[220px] flex-col justify-end overflow-hidden bg-sea-deep px-6 pb-10 pt-14 text-on-deep lg:min-h-screen lg:p-14">' +
+      '<svg class="contours absolute inset-0 h-full w-full text-on-deep" style="opacity:.4" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#contours"/></svg>' +
+      '<div class="relative"><h1 class="font-display text-[2rem] leading-[1.1] lg:text-6xl">' + esc(state.settings.teamName || 'Сборная по географии') + '</h1><p class="m-0 mt-5 max-w-sm opacity-80 lg:text-lg">Силлабус, материалы, прогресс и дедлайны команды в одном месте.</p></div></div>' +
+      '<div class="flex items-center justify-center px-6 py-12"><div class="w-full max-w-sm">' +
+      '<div class="seg" role="tablist"><button type="button" class="seg-btn" role="tab" data-action="auth-tab" data-id="login" aria-pressed="' + (authTab === 'login') + '">Вход</button><button type="button" class="seg-btn" role="tab" data-action="auth-tab" data-id="register" aria-pressed="' + (authTab === 'register') + '">Регистрация</button></div>' +
+      (message ? '<p class="m-0 mt-4 rounded-md bg-danger/10 px-3 py-2 text-sm text-danger" role="alert">' + esc(message) + '</p>' : '') +
+      (authTab === 'login'
+        ? '<form data-form="login" class="mt-6" novalidate><div><label for="li-email" class="label">Email</label><input id="li-email" name="email" type="email" class="input" autocomplete="username"></div>' +
+          '<div class="mt-4"><label for="li-pass" class="label">Пароль</label><input id="li-pass" name="password" type="password" class="input" autocomplete="current-password"></div>' + formError() +
+          '<button type="submit" class="btn btn-primary mt-6 w-full">Войти</button><p class="m-0 mt-4 text-sm"><button type="button" class="link-btn" data-action="reset-password">Забыли пароль?</button></p></form>'
+        : '<form data-form="register" class="mt-6" novalidate><div><label for="rg-name" class="label">Имя и фамилия</label><input id="rg-name" name="name" class="input" autocomplete="name"></div>' +
+          '<div class="mt-4"><label for="rg-grade" class="label">Класс</label><input id="rg-grade" name="grade" type="number" min="1" max="12" class="input"></div>' +
+          '<div class="mt-4"><label for="rg-email" class="label">Email</label><input id="rg-email" name="email" type="email" class="input" autocomplete="email"></div>' +
+          '<div class="mt-4"><label for="rg-pass" class="label">Пароль (минимум 6 символов)</label><input id="rg-pass" name="password" type="password" class="input" autocomplete="new-password"></div>' + formError() +
+          '<button type="submit" class="btn btn-primary mt-6 w-full">Зарегистрироваться</button><p class="m-0 mt-4 text-sm text-slate">После регистрации у вас будет роль «Ученик». Капитана назначает капитан сборной.</p></form>') +
+      '<p class="m-0 mt-8 text-sm text-slate"><button type="button" class="link-btn" data-action="fb-disconnect">Работать без Firebase (локальный режим)</button></p></div></div></div>' +
+      '<div id="modal-root"></div><div id="toast-root" class="pointer-events-none fixed inset-x-4 bottom-6 z-[60] flex flex-col items-center gap-2" aria-live="polite"></div>';
+    icons();
+  }
+
+  /* =================================================================
+     Каркас и навигация
+     ================================================================= */
+  var route = 'analytics';
+  function routeTitle(k) { var r = ROUTES[k]; return k === 'analytics' && isCaptain() ? r.titleCaptain : r.title; }
+  function navLinks(cls, list) {
+    return list.map(function (k) {
+      var r = ROUTES[k], tab = cls === 'tab-link';
+      return '<a href="#' + k + '" data-nav="' + k + '" class="' + cls + '"' + (r.captain ? ' data-captain-only' : '') + '>' + ic(r.icon, tab ? 'h-5 w-5' : 'h-[18px] w-[18px]') + '<span data-route-label="' + k + '">' + (tab ? (r.short || r.title) : r.title) + '</span></a>';
+    }).join('');
+  }
+  function renderShell() {
+    $('#app').innerHTML = '<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="contours" viewBox="0 0 800 800">' + CONTOURS + '</symbol></defs></svg>' +
+      '<aside class="sidebar fixed inset-y-0 left-0 z-30 hidden w-64 flex-col overflow-hidden bg-sea-deep text-on-deep lg:flex" aria-label="Главное меню"><svg class="contours absolute inset-0 h-full w-full text-on-deep" style="opacity:.13" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><use href="#contours"/></svg>' +
+      '<div class="relative px-6 pb-8 pt-7"><a href="#analytics" id="brand" class="font-display text-lg leading-tight text-on-deep" style="text-decoration:none"></a></div>' +
+      '<nav class="relative flex-1 space-y-1 overflow-y-auto px-3">' + navLinks('nav-link', ['analytics', 'syllabus', 'library', 'news', 'qa']) +
+      '<div data-captain-only class="pt-6"><p class="m-0 px-3 pb-2 text-sm text-on-deep/60">Для капитана</p>' + navLinks('nav-link', ['attendance', 'team', 'settings']) + '</div></nav>' +
+      '<div class="relative border-t border-white/10 px-6 py-5 text-sm text-on-deep/70" id="side-foot"></div></aside>' +
+      '<div class="lg:pl-64"><header class="app-header sticky z-20 border-b border-line bg-paper/95 backdrop-blur"><div class="mx-auto flex h-14 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:h-16 lg:px-10">' +
+      '<span id="mobile-title" class="min-w-0 flex-1 truncate font-display text-[15px] lg:hidden"></span><span class="hidden flex-1 lg:block"></span><div id="head-right" class="flex items-center gap-2"></div></div>' +
+      '<div id="me-slot-mobile" class="border-t border-line px-4 py-2 sm:hidden"></div></header>' +
+      '<main id="view" class="mx-auto w-full max-w-6xl px-4 pb-28 pt-6 sm:px-6 lg:px-10 lg:pb-12 lg:pt-10" tabindex="-1"></main></div>' +
+      '<nav class="tabbar fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface/95 backdrop-blur lg:hidden" aria-label="Разделы"><div class="flex">' + navLinks('tab-link', ['analytics', 'syllabus', 'news', 'qa']) +
+      '<button type="button" data-action="more-menu" data-nav="more" class="tab-link">' + ic('menu', 'h-5 w-5') + 'Ещё</button></div></nav>' +
+      '<div id="modal-root"></div><div id="toast-root" class="pointer-events-none fixed inset-x-4 bottom-24 z-[60] flex flex-col items-center gap-2 lg:bottom-6 lg:left-auto lg:right-6 lg:items-end" aria-live="polite"></div>';
+  }
+  function meSelect(id) {
+    if (backend !== 'local' || isCaptain()) return '';
+    var list = students();
+    return '<div class="flex items-center gap-2"><label for="' + id + '" class="text-sm text-slate">Я:</label><select id="' + id + '" class="input" style="padding-top:.375rem;padding-bottom:.375rem;min-width:10rem" data-change="me"><option value="">' + (list.length ? 'Выберите себя' : 'Учеников пока нет') + '</option>' +
+      list.map(function (s) { return '<option value="' + s.id + '"' + (s.id === prefs.meId ? ' selected' : '') + '>' + esc(s.name) + '</option>'; }).join('') + '</select></div>';
+  }
+  function updateChrome() {
+    $$('[data-nav]').forEach(function (a) { var k = a.getAttribute('data-nav'), on = k === route || (k === 'more' && ['library', 'attendance', 'team', 'settings'].indexOf(route) !== -1); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    $$('[data-captain-only]').forEach(function (n) { n.classList.toggle('hidden', !isCaptain()); });
+    $$('[data-route-label="analytics"]').forEach(function (n) { n.textContent = n.closest('.tab-link') ? (isCaptain() ? 'Журнал' : 'Прогресс') : routeTitle('analytics'); });
+    $('#brand').textContent = state.settings.teamName || 'Сборная по географии';
+    $('#mobile-title').textContent = routeTitle(route);
+    var right = '';
+    if (backend === 'local') {
+      right = '<div class="hidden sm:block">' + meSelect('me-select') + '</div><div class="seg shrink-0" role="group" aria-label="Режим"><button type="button" class="seg-btn" data-action="role" data-role="student" aria-pressed="' + (!isCaptain()) + '">Ученик</button>' +
+        '<button type="button" class="seg-btn" data-action="role" data-role="captain" aria-pressed="' + isCaptain() + '"><span class="sm:hidden">Капитан</span><span class="hidden sm:inline">Капитан (учитель)</span></button></div>';
+      $('#side-foot').innerHTML = '<p class="m-0">Локальный режим: данные в этом браузере.</p>';
+    } else {
+      var p = fb.profile || {};
+      right = '<button type="button" class="btn btn-ghost p-2" data-action="refresh" aria-label="Обновить данные" title="Обновить данные">' + ic('refresh-cw', 'h-4 w-4') + '</button>' +
+        '<button type="button" class="flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-line/40" style="border:0;background:transparent;font:inherit;color:inherit;cursor:pointer" data-action="edit-profile"><span class="flex h-8 w-8 items-center justify-center rounded-full bg-sea/15 text-xs font-semibold text-sea">' + esc(initials(p.name)) + '</span>' +
+        '<span class="hidden text-left leading-tight sm:block"><span class="block text-sm font-medium">' + esc(p.name || '') + '</span><span class="block text-xs text-slate">' + (isCaptain() ? 'Капитан' : 'Ученик' + (p.grade ? ', ' + p.grade + ' класс' : '')) + '</span></span></button>';
+      $('#side-foot').innerHTML = '<p class="m-0">Firebase: ' + esc(fbConfig.projectId) + '</p><button type="button" class="link-btn mt-2" style="color:inherit" data-action="logout">Выйти</button>';
+    }
+    $('#head-right').innerHTML = right;
+    var mob = $('#me-slot-mobile'), ms = meSelect('me-select-m'); mob.innerHTML = ms; mob.classList.toggle('hidden', !ms);
+    document.title = routeTitle(route) + ' — ' + (state.settings.teamName || 'Сборная по географии');
+  }
+  var PAGES = { analytics: pageAnalytics, syllabus: pageSyllabus, library: pageLibrary, qa: pageQA, news: pageNews, attendance: pageAttendance, team: pageTeam, settings: pageSettings };
+  function icons() { if (window.lucide && lucide.createIcons) { try { lucide.createIcons(); } catch (e) {} } }
+  function render() {
+    if (!$('#view')) return;
+    if (ROUTES[route].captain && !isCaptain()) { route = 'analytics'; try { history.replaceState(null, '', '#analytics'); } catch (e) {} }
+    destroyCharts(); updateChrome();
+    try { $('#view').innerHTML = PAGES[route](); if (route === 'analytics') drawCharts(); }
+    catch (e) { console.error(e); $('#view').innerHTML = '<div class="rounded-lg border border-danger/40 bg-danger/5 p-5"><p class="m-0 font-medium text-danger">Ошибка отображения</p><p class="m-0 mt-1 text-sm">' + esc(e.message) + '</p></div>'; }
+    icons();
+  }
+  function repaintAll() { render(); if (modal) refreshModal(); }
+  function go(r) { if (location.hash === '#' + r) { route = r; render(); } else location.hash = r; }
+  function readRoute() { var h = location.hash.replace('#', ''); return ROUTES[h] ? h : 'analytics'; }
+  function setRole(r) { prefs.role = r; savePrefs(); an.tab = null; armed = null; closeModal(); render(); toast(r === 'captain' ? 'Режим капитана' : 'Режим ученика'); }
+  function moreMenu() {
+    var links = ['library'].concat(isCaptain() ? ['attendance', 'team', 'settings'] : []);
+    return modalHead('Меню', '') + '<nav class="mt-4 space-y-1">' + links.map(function (k) { return '<a href="#' + k + '" class="flex items-center gap-3 rounded-md px-3 py-3 hover:bg-paper ' + (route === k ? 'bg-paper font-medium text-sea' : 'text-ink') + '" style="text-decoration:none">' + ic(ROUTES[k].icon, 'h-5 w-5') + routeTitle(k) + '</a>'; }).join('') + '</nav>' +
+      (backend === 'firebase' ? '<div class="mt-4 border-t border-line pt-4"><button type="button" class="row-btn rounded-md" data-action="logout">' + ic('log-out', 'h-5 w-5') + 'Выйти</button></div>' : (isCaptain() ? '' : '<p class="m-0 mt-4 text-sm text-slate">Посещаемость, команда и настройки доступны в режиме капитана.</p>'));
+  }
+
+  /* =================================================================
+     Действия
+     ================================================================= */
+  function mustMe() { if (!myId()) { toast('Сначала выберите себя в шапке сайта (список «Я»).', true); return false; } return true; }
+  var ACTIONS = {
+    'close-modal': function () { closeModal(); },
+    'go': function (el) { closeModal(); go(el.getAttribute('data-route')); },
+    'more-menu': function () { openModal(moreMenu); },
+    'role': function (el) { var r = el.getAttribute('data-role'); if (r === prefs.role) return; if (r === 'captain' && state.settings.pinHash) return openModal(pinPrompt); setRole(r); },
+    'refresh': async function () { await fbLoadAll(); repaintAll(); toast('Данные обновлены'); },
+    'logout': async function () { if (fb.auth) await fb.auth.signOut(); },
+    'edit-profile': function () { if (fb.profile) openModal(studentForm(fb.profile)); },
+    'auth-tab': function (el) { authTab = el.getAttribute('data-id'); renderAuth(); },
+    'reset-password': async function () {
+      var email = ($('#li-email') || {}).value;
+      if (!email) return toast('Введите email в поле выше, и мы отправим ссылку для сброса пароля.', true);
+      try { await fb.auth.sendPasswordResetEmail(email.trim()); toast('Письмо для сброса пароля отправлено на ' + email.trim()); } catch (e) { toast(errText(e), true); }
+    },
+    'fb-disconnect': function () {
+      try { localStorage.removeItem(FB_KEY); localStorage.setItem(FB_OFF_KEY, '1'); } catch (e) {}
+      if (fb.auth) { fb.auth.signOut().finally(function () { location.reload(); }); } else location.reload();
+    },
+    'copy-rules': async function () {
+      try { await navigator.clipboard.writeText(FIRESTORE_RULES); toast('Правила скопированы'); } catch (e) { toast('Не удалось скопировать автоматически. Выделите текст правил и скопируйте вручную.', true); }
+    },
+    'an-tab': function (el) { an.tab = el.getAttribute('data-id'); render(); },
+    'an-open-student': function (el) { an.studentId = el.getAttribute('data-id'); an.tab = 'student'; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+    'enter-scores': function () { if (!state.students.length) return toast('В команде пока нет учеников.', true); var ex = exams(); sc.id = ex.length ? ex[ex.length - 1].id : 'new'; openModal(scoreForm, { wide: true }); },
+    'delete-exam': async function (el) {
+      var id = el.getAttribute('data-id'); if (!arm('exam:' + id)) return refreshModal();
+      var ops = [opDel('exams', id)]; Object.keys(state.scores[id] || {}).forEach(function (s) { ops.push(opDel('scores', id + '_' + s)); });
+      state.exams = state.exams.filter(function (e) { return e.id !== id; }); delete state.scores[id]; closeModal();
+      await persist(ops, 'Олимпиада удалена');
+    },
+    'sy-reset': function () { sy.q = ''; render(); },
+    'open-topic': function (el) { openTopic(el.getAttribute('data-id')); },
+    'set-status': async function (el) {
+      var sid = myStudentId(); if (!sid) return;
+      var tid = el.getAttribute('data-topic'), st = el.getAttribute('data-status');
+      var map = state.progress[sid] = state.progress[sid] || {};
+      if (st === 'none') delete map[tid]; else map[tid] = st;
+      await persist([opSet('progress', sid, { statuses: map })], 'Статус: ' + STATUSES[st]);
+    },
+    'delete-topic': async function (el) {
+      var id = el.getAttribute('data-id'); if (!arm('topic:' + id)) return refreshModal();
+      var t = topicById(id), ops = [opDel('topics', id)];
+      state.topics = state.topics.filter(function (x) { return x.id !== id; });
+      state.materials.forEach(function (m) { if (m.topicId === id) { m.topicId = t ? t.parentId : null; ops.push(opSet('materials', m.id, docData(m))); } });
+      state.questions.forEach(function (q) { if (q.topicId === id) { q.topicId = t ? t.parentId : null; ops.push(opSet('questions', q.id, docData(q))); } });
+      await persist(ops, 'Подтема удалена, её материалы перенесены в раздел');
+    },
+    'add-material': function (el) { if (!mustMe()) return; editing = null; openModal(materialForm({ topicId: el.getAttribute('data-topic') || '', category: el.getAttribute('data-category') || '' })); },
+    'edit-material': function (el) { var m = state.materials.find(function (x) { return x.id === el.getAttribute('data-id'); }); if (!m) return; editing = m; openModal(materialForm({ material: m })); },
+    'delete-material': async function (el) {
+      var id = el.getAttribute('data-id'); if (!arm('mat:' + id)) return repaintAll();
+      var m = state.materials.find(function (x) { return x.id === id; }); if (m && m.fileId) idbDel(m.fileId);
+      state.materials = state.materials.filter(function (x) { return x.id !== id; });
+      await persist([opDel('materials', id)], 'Материал удалён');
+    },
+    'download-file': async function (el) {
+      var m = state.materials.find(function (x) { return x.id === el.getAttribute('data-id'); }); if (!m || !m.fileId) return;
+      var b = await getFileBlob(m.fileId); if (!b) return toast('Файл не найден в этом браузере. Попросите капитана добавить материал ссылкой.', true);
+      if (await saveFile(m.fileName || 'file', b)) toast('Файл сохранён');
+    },
+    'lib-cat': function (el) { lib.cat = el.getAttribute('data-id'); render(); },
+    'att-toggle': function (el) { var d = draft(), id = el.getAttribute('data-id'), i = d.indexOf(id); if (i === -1) d.push(id); else d.splice(i, 1); render(); var b = $('[data-action="att-toggle"][data-id="' + id + '"]'); if (b) b.focus(); },
+    'att-all': function () { att.draft = students().map(function (s) { return s.id; }); att.draftDate = att.date; render(); },
+    'att-none': function () { draft(); att.draft = []; render(); },
+    'att-save': async function () {
+      var d = draft().slice(), date = att.date, ops = [];
+      students().forEach(function (s) { var on = d.indexOf(s.id) !== -1; (state.att[s.id] = state.att[s.id] || {})[date] = on; ops.push(opSet('attendance', date + '_' + s.id, { date: date, uid: s.id, present: on })); });
+      var sess = state.sessions.find(function (x) { return x.date === date; }); if (!sess) { sess = { id: date, date: date }; state.sessions.push(sess); }
+      recomputeSession(date); ops.push(opSet('sessions', date, { date: date, presentCount: sess.presentCount, markedCount: sess.markedCount }));
+      await persist(ops, 'Посещаемость за ' + fmtDate(date) + ' сохранена');
+    },
+    'att-delete': async function () {
+      var date = att.date; if (!arm('att:' + date)) return render();
+      var ops = [opDel('sessions', date)];
+      Object.keys(state.att).forEach(function (sid) { if (state.att[sid][date] !== undefined) { delete state.att[sid][date]; ops.push(opDel('attendance', date + '_' + sid)); } });
+      state.sessions = state.sessions.filter(function (s) { return s.date !== date; }); att.draft = null;
+      await persist(ops, 'Занятие удалено');
+    },
+    'att-open': function (el) { att.date = el.getAttribute('data-date'); att.draft = null; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+    'qa-status': function (el) { qa.status = el.getAttribute('data-id'); render(); },
+    'qa-reset': function () { qa.q = ''; qa.topic = 'all'; qa.status = 'all'; render(); },
+    'qa-topic-open': function (el) { qa.q = ''; qa.status = 'all'; qa.topic = el.getAttribute('data-topic'); closeModal(); go('qa'); },
+    'ask-question': function (el) { if (!mustMe()) return; openModal(askForm(el.getAttribute('data-topic') || '')); },
+    'open-question': function (el) { var id = el.getAttribute('data-id'); openModal(function () { return questionModal(id); }, { wide: true }); },
+    'toggle-resolved': async function (el) { var q = findQ(el.getAttribute('data-id')); if (!q) return; q.resolved = !q.resolved; await persist([opSet('questions', q.id, docData(q))], q.resolved ? 'Вопрос отмечен решённым' : 'Вопрос снова открыт'); },
+    'accept-answer': async function (el) {
+      var q = findQ(el.getAttribute('data-q')); if (!q) return; var aid = el.getAttribute('data-a'), on = q.acceptedId !== aid;
+      q.acceptedId = on ? aid : null; if (on) q.resolved = true;
+      await persist([opSet('questions', q.id, docData(q))], on ? 'Ответ отмечен лучшим' : 'Отметка снята');
+    },
+    'delete-answer': async function (el) {
+      var aid = el.getAttribute('data-a'); if (!arm('a:' + aid)) return refreshModal();
+      state.answers = state.answers.filter(function (a) { return a.id !== aid; });
+      var ops = [opDel('answers', aid)], q = state.questions.find(function (x) { return x.acceptedId === aid; });
+      if (q) { q.acceptedId = null; ops.push(opSet('questions', q.id, docData(q))); }
+      await persist(ops, 'Ответ удалён');
+    },
+    'delete-question': async function (el) {
+      var id = el.getAttribute('data-id'); if (!arm('q:' + id)) return refreshModal();
+      var me = myId(), ops = [opDel('questions', id)];
+      state.answers.filter(function (a) { return a.questionId === id; }).forEach(function (a) { if (isCaptain() || a.authorId === me) ops.push(opDel('answers', a.id)); });
+      state.answers = state.answers.filter(function (a) { return a.questionId !== id; });
+      state.questions = state.questions.filter(function (x) { return x.id !== id; }); closeModal();
+      await persist(ops, 'Вопрос удалён');
+    },
+    'new-news': function () { openModal(newsForm); },
+    'toggle-pin': async function (el) { var a = state.news.find(function (x) { return x.id === el.getAttribute('data-id'); }); if (!a) return; a.pinned = !a.pinned; await persist([opSet('news', a.id, docData(a))]); },
+    'delete-news': async function (el) { var id = el.getAttribute('data-id'); if (!arm('n:' + id)) return render(); state.news = state.news.filter(function (x) { return x.id !== id; }); await persist([opDel('news', id)], 'Объявление удалено'); },
+    'new-deadline': function () { openModal(deadlineForm); },
+    'dl-type': function (el) { dl.type = el.getAttribute('data-id'); render(); },
+    'delete-deadline': async function (el) { var id = el.getAttribute('data-id'); if (!arm('dl:' + id)) return render(); state.deadlines = state.deadlines.filter(function (x) { return x.id !== id; }); await persist([opDel('deadlines', id)], 'Дедлайн удалён'); },
+    'edit-student': function (el) { var id = el.getAttribute('data-id'), s = backend === 'firebase' ? fb.users.find(function (u) { return u.id === id; }) : studentById(id); if (s) openModal(studentForm(s)); },
+    'delete-student': function (el) {
+      var id = el.getAttribute('data-id'); if (!arm('st:' + id)) return render();
+      state.students = state.students.filter(function (s) { return s.id !== id; }); delete state.att[id]; delete state.progress[id];
+      state.exams.forEach(function (e) { if (state.scores[e.id]) { delete state.scores[e.id][id]; recomputeExam(e); } });
+      state.sessions.forEach(function (s) { recomputeSession(s.date); });
+      if (prefs.meId === id) { prefs.meId = null; savePrefs(); }
+      saveLocal(); render(); toast('Ученик удалён вместе с его баллами и отметками');
+    },
+    'export-site': function (el) { return exportSite(el); },
+    'backup': async function () { if (await saveFile('geo-olymp-backup-' + todayISO() + '.json', JSON.stringify(state, null, 2))) toast('Резервная копия сохранена'); },
+    'pin-clear': function () { state.settings.pinHash = null; saveLocal(); render(); toast('PIN убран'); },
+    'reset-all': function () {
+      if (!arm('reset')) return render();
+      state.materials.forEach(function (m) { if (m.fileId) idbDel(m.fileId); });
+      var keep = state.settings; state = emptyState(); state.settings = keep; att.draft = null; prefs.meId = null; savePrefs(); saveLocal(); render(); toast('Данные сброшены');
+    }
+  };
+
+  var CHANGES = {
+    'me': function (el) { prefs.meId = el.value || null; savePrefs(); render(); },
+    'an-student': function (el) { an.studentId = el.value; render(); },
+    'qa-topic': function (el) { qa.topic = el.value || 'all'; var b = $('#qa-list'); if (b) { b.innerHTML = qaList(); icons(); } },
+    'att-date': function (el) { att.date = el.value || todayISO(); att.draft = null; render(); },
+    'sc-exam': function (el) { sc.id = el.value; refreshModal(); },
+    'mat-source': function (el) { var f = el.form, v = f.querySelector('input[name="source"]:checked').value; $$('[data-source]', f).forEach(function (n) { n.classList.toggle('hidden', n.getAttribute('data-source') !== v); }); },
+    'mat-file': function (el) {
+      var file = el.files && el.files[0], info = el.form.querySelector('#file-info'); if (!file) { info.textContent = 'Файл не выбран'; return; }
+      var big = file.size > MAX_FILE; info.textContent = file.name + ', ' + fmtSize(file.size) + (big ? '. Больше 25 MB: добавьте ссылкой.' : ''); info.className = big ? 'text-sm text-danger' : 'text-sm text-ink';
+      var t = el.form.elements.namedItem('title'); if (t && !t.value) t.value = file.name.replace(/\.[^.]+$/, '');
+    },
+    'restore': function (el) {
+      var file = el.files && el.files[0]; if (!file) return;
+      var r = new FileReader();
+      r.onload = function () {
+        try { var d = JSON.parse(r.result); if (!d || d.v !== 2 || !Array.isArray(d.topics)) throw new Error('bad'); state = d; state.baseExport = SEED && SEED.state ? SEED.state.exportedAt : null; saveLocal(); att.draft = null; render(); toast('Данные восстановлены из копии'); }
+        catch (e) { toast('Это не похоже на резервную копию этого сайта.', true); }
+        el.value = '';
+      };
+      r.readAsText(file);
+    }
+  };
+  var INPUTS = {
+    'sy-q': function (el) { sy.q = el.value; var b = $('#sy-list'); if (b) { b.innerHTML = syList(); icons(); } },
+    'lib-q': function (el) { lib.q = el.value; var b = $('#lib-list'); if (b) { b.innerHTML = libList(); icons(); } },
+    'qa-q': function (el) { qa.q = el.value; var b = $('#qa-list'); if (b) { b.innerHTML = qaList(); icons(); } }
+  };
+
+  var FORMS = {
+    material: saveMaterial,
+    subtopic: async function (f) {
+      var title = val(f, 'title'), parent = f.getAttribute('data-parent'); if (!title) return showErr(f, 'Введите название подтемы.');
+      var p = topicById(parent), maxOrder = children(parent).reduce(function (m, c) { return Math.max(m, c.order); }, 0);
+      var t = { id: uid('t'), parentId: parent, title: title, kind: p && p.kind === 'math' ? 'math' : 'custom', order: maxOrder + 1 };
+      state.topics.push(t); await persist([opSet('topics', t.id, docData(t))], 'Подтема добавлена');
+      var inp = $('#st-title'); if (inp) inp.focus();
+    },
+    scores: async function (f) {
+      var isNew = sc.id === 'new', e, prev;
+      if (isNew) {
+        var title = val(f, 'etitle'), date = val(f, 'edate'), max = Number(val(f, 'emax'));
+        if (!title) return showErr(f, 'Укажите название олимпиады.'); if (!date) return showErr(f, 'Укажите дату.'); if (!(max > 0)) return showErr(f, 'Максимум баллов должен быть больше нуля.');
+        e = { id: uid('e'), title: title, date: date, level: val(f, 'elevel'), max: max };
+      } else e = state.exams.find(function (x) { return x.id === sc.id; });
+      prev = state.scores[e.id] || {};
+      var next = {}, bad = null;
+      students().forEach(function (s) {
+        var raw = val(f, 's:' + s.id).replace(',', '.'); if (raw === '') return;
+        var v = Number(raw); if (isNaN(v) || v < 0 || v > e.max) { bad = bad || s.name; return; }
+        next[s.id] = { score: v };
+      });
+      if (bad) return showErr(f, 'Проверьте балл: «' + bad + '». Допустимо от 0 до ' + num(e.max) + '.');
+      if (isNew && !Object.keys(next).length) return showErr(f, 'Введите хотя бы один балл.');
+      if (isNew) state.exams.push(e);
+      state.scores[e.id] = next; recomputeExam(e);
+      var ops = [opSet('exams', e.id, docData(e))];
+      Object.keys(next).forEach(function (sid) { ops.push(opSet('scores', e.id + '_' + sid, { examId: e.id, uid: sid, score: next[sid].score, rank: next[sid].rank, total: next[sid].total })); });
+      Object.keys(prev).forEach(function (sid) { if (!next[sid]) ops.push(opDel('scores', e.id + '_' + sid)); });
+      busy(f, true); closeModal();
+      await persist(ops, 'Баллы сохранены: ' + e.title);
+    },
+    ask: async function (f) {
+      var title = val(f, 'title'), body = val(f, 'body'), by = myId();
+      if (!by) return showErr(f, 'Сначала выберите себя в шапке сайта.'); if (!title) return showErr(f, 'Сформулируйте вопрос.'); if (!body) return showErr(f, 'Добавьте подробности: что именно непонятно.');
+      var q = { id: uid('q'), topicId: val(f, 'topic') || null, authorId: by, title: title, body: body, createdAt: todayISO(), ts: Date.now(), resolved: false, acceptedId: null };
+      state.questions.push(q);
+      openModal(function () { return questionModal(q.id); }, { wide: true });
+      await persist([opSet('questions', q.id, docData(q))], 'Вопрос опубликован');
+    },
+    answer: async function (f) {
+      var body = val(f, 'body'), qid = f.getAttribute('data-q'), by = myId();
+      if (!by) return showErr(f, 'Сначала выберите себя в шапке сайта.'); if (!body) return showErr(f, 'Напишите текст ответа.');
+      var a = { id: uid('a'), questionId: qid, authorId: by, body: body, createdAt: todayISO(), ts: Date.now() };
+      state.answers.push(a); await persist([opSet('answers', a.id, docData(a))], 'Ответ опубликован');
+    },
+    news: async function (f) {
+      var title = val(f, 'title'); if (!title) return showErr(f, 'Укажите заголовок.');
+      var n = { id: uid('n'), title: title, body: val(f, 'body'), pinned: f.elements.namedItem('pinned').checked, authorId: myId(), createdAt: todayISO(), ts: Date.now() };
+      state.news.push(n); closeModal(); await persist([opSet('news', n.id, docData(n))], 'Объявление опубликовано');
+    },
+    deadline: async function (f) {
+      var title = val(f, 'title'), date = val(f, 'date'); if (!title) return showErr(f, 'Укажите название.'); if (!date) return showErr(f, 'Укажите дату.');
+      var d = { id: uid('d'), title: title, type: val(f, 'type'), date: date, description: val(f, 'description') || null, createdAt: todayISO(), ts: Date.now() };
+      state.deadlines.push(d); closeModal(); await persist([opSet('deadlines', d.id, docData(d))], countdownText(d.date, d.title));
+    },
+    'student-add': function (f) {
+      var name = val(f, 'name'), grade = val(f, 'grade');
+      if (!name) return showErr(f, 'Укажите имя ученика.'); if (grade && !(Number(grade) >= 1 && Number(grade) <= 12)) return showErr(f, 'Класс должен быть от 1 до 12.');
+      if (state.students.some(function (s) { return norm(s.name) === norm(name); })) return showErr(f, 'Такой ученик уже есть в списке.');
+      state.students.push({ id: uid('s'), name: name, grade: grade ? Number(grade) : null }); saveLocal(); render(); toast(name + ' добавлен(а) в команду');
+      var inp = $('#sa-name'); if (inp) inp.focus();
+    },
+    'student-edit': async function (f) {
+      var id = f.getAttribute('data-id'), name = val(f, 'name'), grade = val(f, 'grade');
+      if (!name) return showErr(f, 'Укажите имя.'); if (grade && !(Number(grade) >= 1 && Number(grade) <= 12)) return showErr(f, 'Класс должен быть от 1 до 12.');
+      if (backend === 'firebase') {
+        var u = fb.users.find(function (x) { return x.id === id; }); if (!u) return closeModal();
+        u.name = name; u.grade = grade ? Number(grade) : null; if (f.elements.namedItem('role')) u.role = val(f, 'role');
+        busy(f, true); closeModal();
+        await persist([opSet('users', u.id, docData(u))], 'Сохранено');
+        try { await fbLoadAll(); } catch (e) {} repaintAll();
+      } else {
+        var s = studentById(id); if (!s) return closeModal(); s.name = name; s.grade = grade ? Number(grade) : null; saveLocal(); closeModal(); render(); toast('Сохранено');
+      }
+    },
+    settings: async function (f) {
+      var team = val(f, 'teamName'); if (!team) return showErr(f, 'Укажите название сборной.');
+      state.settings.teamName = team; if (backend === 'local') state.settings.captainName = val(f, 'captainName') || 'Капитан';
+      await persist(backend === 'firebase' ? [opSet('config', 'team', { teamName: team })] : [], 'Настройки сохранены');
+    },
+    firebase: function (f) {
+      var c = { apiKey: val(f, 'apiKey'), authDomain: val(f, 'authDomain'), projectId: val(f, 'projectId') };
+      if (!c.apiKey || !c.projectId) return showErr(f, 'Заполните как минимум apiKey и projectId.');
+      if (!c.authDomain) c.authDomain = c.projectId + '.firebaseapp.com';
+      try { localStorage.setItem(FB_KEY, JSON.stringify(c)); localStorage.removeItem(FB_OFF_KEY); } catch (e) {}
+      fbConfig = c;
+      if (inClaude) { render(); toast('Ключи сохранены и попадут в экспорт. Здесь сайт продолжит работать локально.'); }
+      else { toast('Ключи сохранены. Перезапуск…'); setTimeout(function () { location.reload(); }, 700); }
+    },
+    pin: async function (f) {
+      var p = val(f, 'pin'); if (!/^\d{4,12}$/.test(p)) return showErr(f, 'PIN должен состоять из 4–12 цифр.');
+      state.settings.pinHash = await hashPin(p); saveLocal(); render(); toast('PIN сохранён');
+    },
+    unlock: async function (f) { var p = val(f, 'pin'); if (!p) return showErr(f, 'Введите PIN.'); if ((await hashPin(p)) !== state.settings.pinHash) return showErr(f, 'Неверный PIN.'); setRole('captain'); },
+    login: async function (f) {
+      var email = val(f, 'email'), pw = f.elements.namedItem('password').value;
+      if (!email || !pw) return showErr(f, 'Введите email и пароль.');
+      busy(f, true, 'Вход…');
+      try { await fb.auth.signInWithEmailAndPassword(email, pw); } catch (e) { busy(f, false); showErr(f, errText(e)); }
+    },
+    register: async function (f) {
+      var name = val(f, 'name'), grade = val(f, 'grade'), email = val(f, 'email'), pw = f.elements.namedItem('password').value;
+      if (!name) return showErr(f, 'Укажите имя и фамилию.'); if (grade && !(Number(grade) >= 1 && Number(grade) <= 12)) return showErr(f, 'Класс должен быть от 1 до 12.');
+      if (!email || !pw) return showErr(f, 'Введите email и пароль.'); if (pw.length < 6) return showErr(f, 'Пароль должен быть не короче 6 символов.');
+      busy(f, true, 'Регистрация…');
+      pendingProfile = { name: name, grade: grade ? Number(grade) : null };
+      try { await fb.auth.createUserWithEmailAndPassword(email, pw); } catch (e) { pendingProfile = null; busy(f, false); showErr(f, errText(e)); }
+    }
+  };
+
+  /* =================================================================
+     События и запуск
+     ================================================================= */
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-action]'); if (!el) return;
+    var fn = ACTIONS[el.getAttribute('data-action')]; if (!fn) return;
+    e.preventDefault();
+    Promise.resolve().then(function () { return fn(el, e); }).catch(function (err) { console.error(err); toast(errText(err), true); });
+  });
+  document.addEventListener('change', function (e) { var el = e.target.closest('[data-change]'); if (el && CHANGES[el.getAttribute('data-change')]) CHANGES[el.getAttribute('data-change')](el); });
+  document.addEventListener('input', function (e) { var el = e.target.closest('[data-input]'); if (el && INPUTS[el.getAttribute('data-input')]) INPUTS[el.getAttribute('data-input')](el); });
+  document.addEventListener('submit', function (e) {
+    var f = e.target.closest('form[data-form]'); if (!f) return;
+    e.preventDefault();
+    var fn = FORMS[f.getAttribute('data-form')]; if (!fn) return;
+    var er = f.querySelector('[data-error]') || (f.nextElementSibling && f.nextElementSibling.hasAttribute && f.nextElementSibling.hasAttribute('data-error') ? f.nextElementSibling : null);
+    if (er) er.classList.add('hidden');
+    Promise.resolve().then(function () { return fn(f); }).catch(function (x) { console.error(x); busy(f, false); showErr(f, errText(x)); });
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal) closeModal(); });
+  window.addEventListener('hashchange', function () { if (!$('#view')) return; route = readRoute(); armed = null; closeModal(); render(); window.scrollTo(0, 0); });
+
+  var pendingProfile = null;
+  function startApp() { renderShell(); route = readRoute(); render(); }
+
+  async function bootFirebase() {
+    $('#app').innerHTML = '<p style="padding:2rem;font-family:sans-serif;color:#56666C">Подключение к Firebase…</p>';
+    try {
+      await loadFirebaseSdk();
+      fb.app = firebase.apps.length ? firebase.app() : firebase.initializeApp(fbConfig);
+      fb.auth = firebase.auth(); fb.db = firebase.firestore();
+    } catch (e) {
+      console.error(e);
+      renderAuth('Не удалось подключиться к Firebase: ' + errText(e) + ' Проверьте ключи или перейдите в локальный режим.');
+      return;
+    }
+    fb.auth.onAuthStateChanged(async function (user) {
+      if (!user) { fb.user = null; fb.profile = null; closeModal(); renderAuth(); return; }
+      fb.user = user;
+      $('#app').innerHTML = '<p style="padding:2rem;font-family:sans-serif;color:#56666C">Загрузка данных…</p>';
+      try {
+        var ref = fb.db.doc('users/' + user.uid), snap = await ref.get();
+        if (!snap.exists) {
+          var p = { name: (pendingProfile && pendingProfile.name) || (user.email || '').split('@')[0], grade: pendingProfile ? pendingProfile.grade : null, email: user.email, role: 'student', createdAt: todayISO() };
+          await ref.set(p); fb.profile = Object.assign({ id: user.uid }, p);
+        } else { fb.profile = Object.assign({ id: user.uid }, snap.data()); }
+        pendingProfile = null;
+        await fbLoadAll();
+        startApp();
+      } catch (e) {
+        console.error(e);
+        authMsg = 'Вход выполнен, но данные не загрузились: ' + errText(e);
+        try { await fb.auth.signOut(); } catch (x) { renderAuth(); }
+      }
+    });
+  }
+
+  if (backend === 'firebase') bootFirebase();
+  else { saveLocal(); startApp(); }
+})();
+</script>
+</body>
+</html>
