@@ -147,15 +147,15 @@ h1, h2, h3 { font-family: Unbounded, system-ui, sans-serif; font-weight: 500; ma
     'Геология',
     'Геоморфология',
     'Метеорология',
-    'Гидрология және мұхиттану (океанография)',
-    'Биогеография және топырақтану',
-    'Климатология және экология',
-    'Халық географиясы, денсаулық географиясы, туризм, рекреация және спорт географиясы',
-    'Саяси және мәдени география',
-    'Экономикалық география (ауыл шаруашылығы, өнеркәсіп, қызмет көрсету)',
-    'Энергетика, табиғи ресурстар және көлік',
-    'Жер пайдалану географиясы, қалалар географиясы және урбанистика',
-    'Картамен жұмыс істеу және географиялық есептерді шешу'
+    'Гидрология и океанография',
+    'Биогеография и почвоведение',
+    'Климатология и экология',
+    'Человеческая география, география здоровья, туризм, рекреация и география спорта',
+    'Социальная география',
+    'Экономика география' , 
+    'Энергетика',
+    'Урбанистика и землепользование',
+    'Картография'
   ];
   var MATH_SKILLS = ['Пропорции', 'Значимые цифры', 'Квадратные уравнения', 'Теорема Пифагора', 'Планиметрия', 'Тригонометрия', 'Графики', 'Логика'];
   var BOOKS = [
@@ -193,7 +193,7 @@ h1, h2, h3 { font-family: Unbounded, system-ui, sans-serif; font-weight: 500; ma
     important: { label: 'Важно', badge: 'b-danger', dot: 'bg-danger' }
   };
   var ROUTES = {
-    analytics: { title: 'Мой прогресс', titleCaptain: 'Журнал команды', short: 'Прогресс', icon: 'bar-chart-3' },
+    analytics: { title: 'Мой прогресс', titleCaptain: 'Географы', short: 'Прогресс', icon: 'bar-chart-3' },
     syllabus: { title: 'Силлабус', icon: 'map' },
     library: { title: 'Библиотека', icon: 'library' },
     news: { title: 'Новости и дедлайны', short: 'Новости', icon: 'megaphone' },
@@ -347,13 +347,13 @@ h1, h2, h3 { font-family: Unbounded, system-ui, sans-serif; font-weight: 500; ma
   function defaultBooks(by) {
     return BOOKS.map(function (b, i) {
       return { id: 'book-' + (i + 1), topicId: b[2], title: b[0], author: b[1], category: 'textbook', url: null, fileId: null, fileName: null, fileSize: null, fileType: null,
-        tags: ['учебник', 'силлабус'], description: 'Рекомендованный учебник из программы олимпиады.', by: by || 'captain', createdAt: todayISO(), ts: i };
+        tags: ['учебник', 'силлабус'], description: 'Рекомендованный учебник из программы.', by: by || 'captain', createdAt: todayISO(), ts: i };
     });
   }
   function emptyState() {
     return {
       v: 2, exportedAt: null, baseExport: null,
-      settings: { teamName: 'Сборная по географии', captainName: 'Капитан', pinHash: null },
+      settings: { teamName: 'Karkyz Geographers', captainName: 'Башкан', pinHash: null },
       students: [], topics: defaultTopics(), materials: defaultBooks('captain'),
       sessions: [], att: {}, exams: [], scores: {}, progress: {},
       questions: [], answers: [], news: [], deadlines: []
